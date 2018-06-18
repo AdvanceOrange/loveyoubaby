@@ -3,8 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- 缩放动画需要定义meta，否则会出现横向滚动条-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        html, body {
+            background: #f5deb3;
+            width: 100%;
+            height: 100%;
+        }
+        * {
+            padding:0;
+            margin:0;
+        }
+
+        .headTitle {
+            color: #65625c;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page1-content {
+            margin: auto;
+            text-align: center;
+        }
+
+        .page1-contains {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contains {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            /*animation-duration: inherit;*/
+            /*animation-iteration-count: infinite;*/
+            /*animation-delay: 1s;*/
+        }
+
+        .icon {
+            border:0 solid rgba(255,0,0,0);
+            border-radius: 50%;
+            animation: border-ani .5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-out;
+        }
+        @keyframes border-ani {
+            from{
+                transform: scale(1);
+                /*border:0 solid rgba(255,0,0,0);*/
+            }
+            to{
+                transform: scale(1.1);
+                /*border:2rem solid rgba(247, 62, 62, 1);*/
+            }
+        }
+
+    </style>
 </head>
-<body>
-hello
+<body >
+    <div class="contains">
+        <div class="page1-contains">
+            <div class="page1-content">
+                <!--<h1 class="headTitle">**与**的**毫秒</h1>-->
+                <svg onclick="hidd(this)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1528880956070" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="1969" width="200" height="200"><defs><style type="text/css"/></defs><path d="M460.1856 12.71808c-55.37792 5.65248-116.40832 23.32672-168.71424 49.00864C189.44 111.9232 112.86528 188.27264 62.19776 290.77504-59.62752 536.29952 40.04864 834.85696 285.11232 959.27296c247.18336 125.5936 548.5568 26.85952 674.1504-220.55936 98.49856-193.6896 61.0304-427.91936-92.60032-581.31456C760.39168 50.8928 610.51904-2.36544 460.1856 12.71808z m-33.6896 308.44928c20.26496 7.0656 38.17472 19.32288 63.62112 43.35616l21.9136 20.736 23.32672-22.14912c38.41024-36.05504 60.32384-46.65344 101.56032-48.30208 41.00096-1.88416 74.7008 10.5984 102.73792 38.17472 50.432 49.95072 54.43584 126.7712 9.18528 186.85952-19.08736 25.21088-87.6544 88.12544-188.9792 173.18912l-47.83104 39.82336-48.78336-40.76544c-111.9232-93.55264-181.1968-158.58688-196.75136-184.73984-11.78624-19.32288-20.50048-47.12448-22.38464-69.2736-4.7104-62.44352 36.99712-121.11872 99.44064-139.73504 20.02944-5.89824 62.44352-4.47488 82.944 2.82624z" p-id="1970" fill="#e7351e"/></svg>
+            </div>
+        </div>
+
+        <div class="page2-contains">
+            <h1>标题</h1>
+            <h3>sdfdafadsfdsfds</h3>
+        </div>
+    </div>
+
+<script>
+    function hidd(ele,callback){
+        var i = 1;
+        var iteval = setInterval(function(){
+            i-=0.1;
+            ele.style.opacity=i;
+            if(i <= 0) {
+                clearInterval(iteval);
+                console.log("complate...")
+            }
+        },50)
+
+    }
+    function draw(){
+        var drawing = document.getElementById("drawing"),
+            pic = document.getElementById('flower'); //获取描边图片
+        drawing.width = '500';
+        drawing.height = '500';
+        if (drawing.getContext){
+            var content = drawing.getContext("2d"),
+                radian = 0,
+                radian_add = Math.PI/40;
+            content.translate(250,250);
+            function heart(){
+                X = getX1(radian);
+                Y = getY1(radian);
+                content.drawImage(pic,X,Y,25,25);   //在给定坐标绘制给定大小的图片
+                radian+=radian_add;
+                if (radian > (2*Math.PI)){ //绘制完整的心型线后取消间歇调用
+                    clearInterval(intervalId);
+                }
+            }
+            intervalId = setInterval(heart,100);  //设置间歇调用，间隔为100ms
+        }
+    }
+</script>
 </body>
 </html>
