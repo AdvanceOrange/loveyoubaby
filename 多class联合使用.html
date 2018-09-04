@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多class联合使用</title>
+</head>
+<style>
+    /*颜色类样式 start*/
+    .green {
+        color: #48ff7e;
+    }
+    .blue {
+        color: #63dbff;
+    }
+    /*颜色类样式 end*/
+
+
+    /*字体大小样式 start*/
+    .font1x {
+        font-size: 1rem;
+    }
+    .font2x {
+        font-size: 2rem;
+    }
+    /*字体大小样式 end*/
+
+
+    /*背景样式 start*/
+    .backredtoblue {
+        background: linear-gradient(to right, red , blue);
+    }
+
+    .backgreenpink {
+        background: linear-gradient(to right, #b6ff88, #ff21b4);
+    }
+    /*背景样式 end*/
+
+    .button {
+        border: 3px solid #5c7ef5;
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+</style>
+<body>
+<div class="button blue font1x backredtoblue">button blue font1x</div>
+<br>
+<div class="button blue font2x">font2x</div>
+<br>
+<div class="button green font2x backgreenpink">font2x</div>
+<br>
+<div class="button green font2x backredtoblue">font2x</div>
+
+</body>
+</html>
