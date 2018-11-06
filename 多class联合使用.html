@@ -44,6 +44,8 @@
     }
 </style>
 <body>
+<div style="display: flex">
+    <div>
 <div class="button blue font1x backredtoblue">button blue font1x</div>
 <br>
 <div class="button blue font2x">font2x</div>
@@ -51,6 +53,81 @@
 <div class="button green font2x backgreenpink">font2x</div>
 <br>
 <div class="button green font2x backredtoblue">font2x</div>
+    </div>
+    <div>
+        <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;多class联合使用&lt;/title&gt;
+&lt;/head&gt;
+&lt;style&gt;
+    /*颜色类样式 start*/
+    .green {
+        color: #48ff7e;
+    }
+    .blue {
+        color: #63dbff;
+    }
+    /*颜色类样式 end*/
 
+
+    /*字体大小样式 start*/
+    .font1x {
+        font-size: 1rem;
+    }
+    .font2x {
+        font-size: 2rem;
+    }
+    /*字体大小样式 end*/
+
+
+    /*背景样式 start*/
+    .backredtoblue {
+        background: linear-gradient(to right, red , blue);
+    }
+
+    .backgreenpink {
+        background: linear-gradient(to right, #b6ff88, #ff21b4);
+    }
+    /*背景样式 end*/
+
+    .button {
+        border: 3px solid #5c7ef5;
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+&lt;div style="display: flex"&gt;
+    &lt;div&gt;
+&lt;div class="button blue font1x backredtoblue"&gt;button blue font1x&lt;/div&gt;
+&lt;br&gt;
+&lt;div class="button blue font2x"&gt;font2x&lt;/div&gt;
+&lt;br&gt;
+&lt;div class="button green font2x backgreenpink"&gt;font2x&lt;/div&gt;
+&lt;br&gt;
+&lt;div class="button green font2x backredtoblue"&gt;font2x&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;pre&gt;&lt;code data-language="html"&gt;
+
+        &lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;script src="rainbow-custom.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+    </div>
+</div>
+
+
+<script src="rainbow-custom.min.js"></script>
 </body>
 </html>
