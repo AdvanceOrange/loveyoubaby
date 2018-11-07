@@ -2,6 +2,7 @@
 <head>
     <title>Hello - OMFG | Audio Visualizer</title>
     <meta charset='utf-8'>
+    <meta content="maximum-scale=1.0,user-scalable=no"  name="viewport" />
 
     <style type="text/css" id="top_style">
         html, body {
@@ -13,26 +14,6 @@
         * {
             margin: 0;
             padding: 0;
-        }
-        .newDiv::before{
-            content: '';
-            display: block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #009688;
-            position: absolute;
-            top: -3px;
-        }
-        .newDiv::after{
-            content: '';
-            display: block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #009688;
-            position: absolute;
-            bottom: -3px;
         }
 
         .div{
@@ -109,56 +90,91 @@
 
 <!--</div>-->
 
+<canvas id="fengMianColor" style="display: none"></canvas>
+<img id="fengMianImg" style="display: none" src="img/20171114100654692.jpg"/>
 
-
-<div style="position: relative;height:1600px;transform: scale(.7);">
-    <div id="infoText" style="width: 500px;
-    height: 60px;
-    background: #9292923b;overflow: hidden"></div>
-    <div style="left:500px;top:600px;position: absolute" id="newDiv">
+<div style="position: relative;height:1600px;">
+    <h1 id="infoText" style=""></h1>
+    <div style="    position: relative;
+    transform: translateX(250px);
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    /* left: 500px; */
+   " id="newDiv">
 
         <!--<div style="position: absolute;width: 10px;transform-origin: bottom;transform: rotate(30deg) translateX(110px);height: 57px;background: red;bottom: 0;"></div>-->
     </div>
-    <div id="fengmian" style="position: absolute;
-        top: 375px;
-        left: 278px;
-        background-size: cover;
-        border-radius: 50%;
-        width: 450px;
-        height: 450px;
-        background: url(http://news.yule.com.cn/uploadfile/2017/1114/20171114100654692.jpg);">
+    <div id="fengmian" style="position: relative;
+    top: -225px;
+    left:3px;
+    /* left: 278px; */
+    margin: auto;
+    background-size: cover;
+    border-radius: 50%;
+    width: 450px;
+    height: 450px;
+    background: url(http://news.yule.com.cn/uploadfile/2017/1114/20171114100654692.jpg);">
     </div>
 </div>
 </body>
-<script type="text/javascript">
-    var len = 130;
-    // var div = document.getElementById("animationDiv");
-    var deg = 360/len;
-    // var animationKeyFrames = "";
-    // var time = 1; //切换总共时间
-    // for(var i = 0; i < len; i++){
-    //     //添加div
-    //     var box = document.createElement("div");
-    //     box.className = "box";
-    //     box.style.cssText = "transform:rotate("+ deg*i +"deg) translateY(-80px)";
-    //     div.appendChild(box);
-    //
-    //     //生成过渡动画
-    //     animationKeyFrames += "#animationDiv .box:nth-child("+ (i+1) +"){transform:background "+(1/len*time)+"s linear; transition-delay: "+(i/len*time)+"s;}\n";
-    // }
-    // document.getElementById("top_style").innerText += animationKeyFrames;
-    // console.log(animationKeyFrames);
-
-
-    var newDiv = document.getElementById("newDiv");
-    for(var i = 0; i < len; i++) {
-        var box = document.createElement("div");
-        box.className = "newDiv";
-        box.style.cssText = "position: absolute;width: 6px;transform-origin: bottom;transform: rotate("+deg*i+"deg) translateY(-250px);height: 0px;background: #009688;bottom: 0";
-        newDiv.appendChild(box);
-    }
-</script>
 <script src="js/script.js">
 
 </script>
+<script type="text/javascript">
+    window.onload = function() {
+        var len = 130;
+        // var div = document.getElementById("animationDiv");
+        var deg = 360 / len;
+        // var animationKeyFrames = "";
+        // var time = 1; //切换总共时间
+        // for(var i = 0; i < len; i++){
+        //     //添加div
+        //     var box = document.createElement("div");
+        //     box.className = "box";
+        //     box.style.cssText = "transform:rotate("+ deg*i +"deg) translateY(-80px)";
+        //     div.appendChild(box);
+        //
+        //     //生成过渡动画
+        //     animationKeyFrames += "#animationDiv .box:nth-child("+ (i+1) +"){transform:background "+(1/len*time)+"s linear; transition-delay: "+(i/len*time)+"s;}\n";
+        // }
+        // document.getElementById("top_style").innerText += animationKeyFrames;
+        // console.log(animationKeyFrames);
+        var colorStr = getImageColor(document.getElementById("fengMianColor"), document.getElementById("fengMianImg"));
+        console.log(colorStr)
+
+        var styleEle = document.getElementsByTagName("style");
+        var styleStr = ".newDiv::before{\n" +
+            "            content: '';\n" +
+            "            display: block;\n" +
+            "            width: 6px;\n" +
+            "            height: 6px;\n" +
+            "            border-radius: 50%;\n" +
+            "            background: "+colorStr+";\n" +
+            "            position: absolute;\n" +
+            "            top: -3px;\n" +
+            "        }\n" +
+            "        .newDiv::after{\n" +
+            "            content: '';\n" +
+            "            display: block;\n" +
+            "            width: 6px;\n" +
+            "            height: 6px;\n" +
+            "            border-radius: 50%;\n" +
+            "            background: "+colorStr+";\n" +
+            "            position: absolute;\n" +
+            "            bottom: -3px;\n" +
+            "        }";
+        styleEle[0].innerHTML = styleEle[0].innerHTML + styleStr;
+
+
+        var newDiv = document.getElementById("newDiv");
+        for (var i = 0; i < len; i++) {
+            var box = document.createElement("div");
+            box.className = "newDiv";
+            box.style.cssText = "position: absolute;width: 6px;transform-origin: bottom;transform: rotate(" + deg * i + "deg) translateY(-250px);height: 0px;background: " + colorStr + ";bottom: 0";
+            newDiv.appendChild(box);
+        }
+    }
+</script>
+
 </html>

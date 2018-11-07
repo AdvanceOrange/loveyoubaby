@@ -22,9 +22,13 @@ var length = analyser.fftSize;
 //创建数据
 var dataArray = new Uint8Array(length);
 
-
 audio.oncanplaythrough = function() {
+    //if(AudioContext == null || AudioContext == undefined) {
+        //alert("浏览器不支持Audio API")
 
+    //}
+
+        showFPS.go();
 
 //alert("a")
     //audio.play();
@@ -39,17 +43,97 @@ audio.oncanplaythrough = function() {
     })
 };
 
-
-var infoTextEle = document.getElementById("infoText");
-
 function draw() {
     requestAnimationFrame(draw)
     //console.log(dataArray)
     analyser.getByteFrequencyData(dataArray);
-    infoTextEle.innerText = "输出信息:\n"+dataArray.toString()
+    // infoTextEle.innerText = "输出信息:\n"+dataArray.toString()
     // infoTextEle.scrollTo(0,infoTextEle.scrollHeight)
     var eles = document.getElementsByClassName("newDiv");
     for(var i = 0; i < 130; i ++) {
-        eles[i].style.height = parseInt(dataArray[i]*.8);
+        eles[i].style.height = parseInt(dataArray[i]*.6);
     }
+}
+
+
+/**
+ ** 得到浏览器每秒帧数fps
+ **
+ ** @Date Mar 13 2013
+ **/
+var showFPS = (function(){
+    var requestAnimationFrame =
+        window.requestAnimationFrame || //Chromium
+        window.webkitRequestAnimationFrame || //Webkit
+        window.mozRequestAnimationFrame || //Mozilla Geko
+        window.oRequestAnimationFrame || //Opera Presto
+        window.msRequestAnimationFrame || //IE Trident?
+        function(callback) { //Fallback function
+            window.setTimeout(callback, 1000/60);
+        };
+    var e,pe,pid = "infoText",fps,last,offset,step,appendFps;
+
+    fps = 0;
+    last = Date.now();
+    step = function(){
+        offset = Date.now() - last;
+        fps += 1;
+        if( offset >= 1000 ){
+            last += offset;
+            appendFps(fps);
+            fps = 0;
+        }
+        requestAnimationFrame( step );
+    };
+    //显示fps; 如果未指定元素id，默认<body>标签
+    appendFps = function(fps){
+        if(!e) e=document.createElement('span');
+        pe=pid?document.getElementById(pid):document.getElementsByTagName('body')[0];
+        e.innerHTML = "fps: " + fps;
+        pe.appendChild(e);
+        if(fps >= 40) {
+            pe.style.color="green";
+        } else {
+            pe.style.color="red";
+        }
+    }
+    return {
+        setParentElementId :  function(id){pid=id;},
+        go          :  function(){step();}
+    }
+})();
+
+
+function getImageColor(canvas, img) {
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var context = canvas.getContext("2d");
+    var r=0,g=0,b=0;
+
+    context.drawImage(img, 0, 0);
+
+    // 获取像素数据
+    var data = context.getImageData(0, 0, img.width, img.height).data;
+
+    // 取所有像素的平均值
+    for (var row = 0; row < img.height; row++) {
+        for (var col = 0; col < img.width; col++) {
+            r += data[((img.width * row) + col) * 4];
+            g += data[((img.width * row) + col) * 4 + 1];
+            b += data[((img.width * row) + col) * 4 + 2];
+        }
+    }
+
+    // 求取平均值
+    r /= (img.width * img.height);
+    g /= (img.width * img.height);
+    b /= (img.width * img.height);
+
+    // 将最终的值取整
+    r = Math.round(r);
+    g = Math.round(g);
+    b = Math.round(b);
+
+    return "rgb(" + r + "," + g + "," + b + ")";
 }
