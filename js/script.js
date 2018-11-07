@@ -1,7 +1,8 @@
 var AudioContext = AudioContext || webkitAudioContext;
 var context = new AudioContext;
 //加载媒体
-var audio = new Audio("mp3/Half-blood Kakashi - Stay With Me【鬼怪OST】(Stringed Music Remix)（Cover：朴灿烈／Punch）.mp3");
+// var audio = new Audio("mp3/Half-blood Kakashi - Stay With Me【鬼怪OST】(Stringed Music Remix)（Cover：朴灿烈／Punch）.mp3");
+var audio = new Audio("mp3/JUJU - この夜を止めてよ.mp3");
 //创建节点
 var source = context.createMediaElementSource(audio);
 var analyser = context.createAnalyser();
@@ -21,6 +22,11 @@ analyser.fftSize = 4096;
 var length = analyser.fftSize;
 //创建数据
 var dataArray = new Uint8Array(length);
+
+audio.ended = function(){
+    alert("end")
+    document.getElementById("fengmian").className = 'fengmianEnd';
+}
 
 audio.oncanplaythrough = function() {
     //if(AudioContext == null || AudioContext == undefined) {

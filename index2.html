@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Hello - OMFG | Audio Visualizer</title>
+    <title>Hello Audio API</title>
     <meta charset='utf-8'>
     <meta content="maximum-scale=1.0,user-scalable=no"  name="viewport" />
 
@@ -69,6 +69,10 @@
             animation-duration: 10s;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
+            animation-play-state: running;
+        }
+        .fengmianEnd {
+            animation-play-state: paused;
         }
 
         @keyframes circle {
@@ -91,12 +95,12 @@
 <!--</div>-->
 
 <canvas id="fengMianColor" style="display: none"></canvas>
-<img id="fengMianImg" style="display: none" src="img/20171114100654692.jpg"/>
+<img id="fengMianImg" style="display: none" src="img/s4514320.jpg"/>
 <div style="width: 100%;height:100%;position: absolute;">
-    <div style="width: 100%;height:100%;background: rgba(0, 0, 0, 0.1607843137254902);position: absolute;z-index: 1;"></div>
-    <div style="background: url(http://news.yule.com.cn/uploadfile/2017/1114/20171114100654692.jpg);filter: blur(100px);width: 100%;height:100%;background-position: center;background-size: cover;background-repeat: repeat-y;position: absolute"></div>
+    <div style="width: 100%;height:100%;background: rgba(0, 0, 0, 0.5607843137254902);position: absolute;z-index: 1;"></div>
+    <div style="background: url(img/s4514320.jpg);filter: blur(100px);width: 100%;height:100%;background-position: center;background-size: cover;background-repeat: repeat-y;position: absolute"></div>
 </div>
-    <div style="position: relative;height:1600px;z-index: 2">
+    <div style="position: relative;height:1600px;z-index: 2;overflow: hidden;">
     <h1 id="infoText" style=""></h1>
     <div style="position: relative;
     transform: translateX(250px);
@@ -117,7 +121,7 @@
     border-radius: 50%;
     width: 450px;
     height: 450px;
-    background: url(http://news.yule.com.cn/uploadfile/2017/1114/20171114100654692.jpg);">
+    background: url(img/s4514320.jpg);">
     </div>
 </div>
 <h1 style="text-align: center;position: relative;color:#4a3b3b">轻触屏幕开始播放 -by 进击的橙子君</h1>
