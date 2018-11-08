@@ -31,8 +31,8 @@ var audioLength = 0;
 var progressDivWidth = 0;
 var currentProgress = document.getElementById("currentProgress");
 audio.ontimeupdate = function(){
-    console.log(audio.currentTime);// 获取当前播放时间
-    console.log(audio.duration);// 获取歌曲的总时间
+    //console.log(audio.currentTime);// 获取当前播放时间
+    //console.log(audio.duration);// 获取歌曲的总时间
 
     currentProgress.style.width= ((audio.currentTime / audio.duration)*100) +"%";
 }
@@ -128,9 +128,9 @@ var showFPS = (function(){
         e.innerHTML = "fps: " + fps;
         pe.appendChild(e);
         if(fps >= 40) {
-            pe.style.color="green";
+            pe.style.color="#8bc34a";
         } else {
-            pe.style.color="red";
+            pe.style.color="#ff4031";
         }
     }
     return {
