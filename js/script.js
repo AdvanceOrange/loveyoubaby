@@ -23,9 +23,9 @@ var length = analyser.fftSize;
 //创建数据
 var dataArray = new Uint8Array(length);
 
-audio.ended = function(){
-    alert("end")
+audio.onended = function(){
     document.getElementById("fengmian").className = 'fengmianEnd';
+    audio.load();
 }
 
 audio.oncanplaythrough = function() {
@@ -41,6 +41,7 @@ audio.oncanplaythrough = function() {
 
     //loader.innerHTML = 'click to play...'
     document.addEventListener('click',function(){
+        console.log
         document.getElementById("fengmian").className = 'fengmian';
         //loader.style.display = 'none'
         //alert("b")
@@ -56,9 +57,25 @@ function draw() {
     // infoTextEle.innerText = "输出信息:\n"+dataArray.toString()
     // infoTextEle.scrollTo(0,infoTextEle.scrollHeight)
     var eles = document.getElementsByClassName("newDiv");
+    var startIndex = 0;
     for(var i = 0; i < 130; i ++) {
-        eles[i].style.height = parseInt(dataArray[i]*.6);
+        startIndex = i * 5;
+        eles[i].style.height = parseInt(pingjun(dataArray,startIndex)) + "px";
     }
+}
+
+function pingjun(dataArray, startIndex){
+    var sum = 0;
+    for(var i = 0; i < 5; i ++) {
+        //console.log(startIndex)
+        sum += dataArray[startIndex++];
+    }
+    //console.log(dataArray)
+    //console.log(startIndex)
+    //console.log(sum)
+    //console.log(sum / 5)
+
+    return  parseInt(sum / 5) * 0.5;
 }
 
 
