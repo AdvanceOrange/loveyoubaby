@@ -2,7 +2,7 @@ var AudioContext = AudioContext || webkitAudioContext;
 var context = new AudioContext;
 //加载媒体
 // var audio = new Audio("mp3/Half-blood Kakashi - Stay With Me【鬼怪OST】(Stringed Music Remix)（Cover：朴灿烈／Punch）.mp3");
-var audio = new Audio("mp3/JUJU - この夜を止めてよ.mp3");
+var audio = new Audio("mp3/Madilyn Bailey - Fetish.mp3");
 //创建节点
 var source = context.createMediaElementSource(audio);
 var analyser = context.createAnalyser();
@@ -27,8 +27,20 @@ audio.onended = function(){
     document.getElementById("fengmian").className = 'fengmianEnd';
     audio.load();
 }
+var audioLength = 0;
+var progressDivWidth = 0;
+var currentProgress = document.getElementById("currentProgress");
+audio.ontimeupdate = function(){
+    console.log(audio.currentTime);// 获取当前播放时间
+    console.log(audio.duration);// 获取歌曲的总时间
+
+    currentProgress.style.width= ((audio.currentTime / audio.duration)*100) +"%";
+}
 
 audio.oncanplaythrough = function() {
+    audioLength = audio.duration;
+    progressDivWidth = parseInt(document.getElementById("progress").style.width);
+    //console.log("width:"+progressDivWidth)
     document.getElementById("info").innerHTML = "轻触屏幕开始播放 -by 进击的橙子君"
     //if(AudioContext == null || AudioContext == undefined) {
         //alert("浏览器不支持Audio API")

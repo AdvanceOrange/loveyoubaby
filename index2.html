@@ -93,10 +93,10 @@
 <!--</div>-->
 
 <canvas id="fengMianColor" style="display: none"></canvas>
-<img id="fengMianImg" style="display: none" src="img/s4514320.jpg"/>
+<img id="fengMianImg" style="display: none" src="img/4a6cd739b6003af3768a6e59392ac65c1038b612.jpg"/>
     <div style="width: 100%;height: 100%;;position: absolute;">
         <div style="width: 100%;height:100%;background: rgba(0, 0, 0, 0.4607843137254902);position: absolute;z-index: 1;"></div>
-        <div style="background: url(img/s4514320.jpg);filter: blur(100px);width: 100%;height:100%;background-position: center;background-size: cover;background-repeat: repeat-y;position: absolute"></div>
+        <div style="background: url(img/4a6cd739b6003af3768a6e59392ac65c1038b612.jpg);filter: blur(100px);width: 100%;height:100%;background-position: center;background-size: cover;background-repeat: repeat-y;position: absolute"></div>
     </div>
     <div style="position: relative;z-index: 2;overflow: hidden;height: 100%;">
     <h1 id="infoText" style="color:orange"></h1>
@@ -119,8 +119,15 @@
     border-radius: 50%;
     width: 450px;
     height: 450px;
-    background: url(img/s4514320.jpg);">
+    background: url(img/4a6cd739b6003af3768a6e59392ac65c1038b612.jpg);">
     </div>
+        <div style="
+    overflow: hidden;
+    height: 5px;
+    width: 70%;
+    margin: auto;" id="progress">
+            <div style="height: 100%;width: 0" id="currentProgress"></div>
+        </div>
         <h1 style="text-align: center;position: relative;color:#dbdbdb;top: 400px;" id="info">音频加载中...</h1>
 </div>
 
@@ -150,6 +157,7 @@
         var colorStr = getImageColor(document.getElementById("fengMianColor"), document.getElementById("fengMianImg"));
         console.log(colorStr)
         document.getElementById("info").style.color = colorStr;
+        document.getElementById("currentProgress").style.background=colorStr;
 
         var styleEle = document.getElementsByTagName("style");
         var styleStr = ".newDiv::before{\n" +
