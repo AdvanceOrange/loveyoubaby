@@ -29,6 +29,7 @@ audio.onended = function(){
 }
 
 audio.oncanplaythrough = function() {
+    document.getElementById("info").innerHTML = "轻触屏幕开始播放 -by 进击的橙子君"
     //if(AudioContext == null || AudioContext == undefined) {
         //alert("浏览器不支持Audio API")
 
@@ -41,7 +42,7 @@ audio.oncanplaythrough = function() {
 
     //loader.innerHTML = 'click to play...'
     document.addEventListener('click',function(){
-        console.log
+        //console.log
         document.getElementById("fengmian").className = 'fengmian';
         //loader.style.display = 'none'
         //alert("b")
