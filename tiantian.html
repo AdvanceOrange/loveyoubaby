@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>徐甜甜</title>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        * {padding:0;margin: 0;box-sizing: border-box}
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        .model {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: #ff0062;
+        }
+        .name-input {
+            border: 2px solid #ff9e80;
+            border-radius: 2rem;
+            background: #fffbef;
+            width: 75%;
+            font-size: 2rem;
+        }
+        h1,h2{
+            text-align: center;
+            color: #d3da34;
+        }
+        h2{
+            margin-bottom: 1rem;
+        }
+        .content{
+            text-align: center;
+            margin: auto;
+        }
+        .ok-btn{
+            width: 75%;
+            font-weight: bold;
+            border-radius: 2rem;
+            margin: 1rem auto;
+            background: #f9feff;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="model">
+        <div class="content">
+            <h1>你好呀^ - ^</h1>
+            <h2>你叫什么名字呀?</h2>
+            <input class="name-input" id="mame-input"/>
+            <div class="ok-btn" onclick="submit()">OK</div>
+        </div>
+    </div>
+    <script>
+        function submit() {
+            let inputValue = document.getElementById("mame-input").value;
+            if(inputValue){
+                if(inputValue == "徐甜甜"){
+                    alert("我以后叫你小甜甜吧！很高兴认识你！嘻嘻")
+                } else {
+                    alert("骗人，你的名字才不是"+inputValue+"呢！哼")
+                }
+            } else {
+                alert("你还没有告诉我你的名字呢！")
+            }
+        }
+    </script>
+</body>
+</html>
