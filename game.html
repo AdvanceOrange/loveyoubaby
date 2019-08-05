@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱满屋</title>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        * {padding:0;margin: 0;box-sizing: border-box}
+        html, body{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .like-btn-plane{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+        }
+        .like-btn{
+            text-align: center;
+            width: 50%;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 2rem;
+            margin: 1rem auto;
+            background: #FFC107;;
+            padding: 0.5rem 1rem;
+        }
+        .swiper-slide {
+            text-align: center;
+            color: #504710;
+            background: #fff;
+            /* display: -webkit-box; */
+            display: -ms-flexbox;
+            /* display: -webkit-flex; */
+            /* display: flex; */
+            /* -webkit-box-pack: center; */
+            -ms-flex-pack: center;
+            /* -webkit-justify-content: center; */
+            /* justify-content: center; */
+            /* -webkit-box-align: center; */
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .model {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+        .name-input {
+            border: 2px solid #ff9e80;
+            border-radius: 2rem;
+            background: #fffbef;
+            width: 75%;
+            font-size: 2rem;
+        }
+        h1{
+            color: #ecce9c;
+            text-shadow: 13px 6px 16px #fbf4bd;
+        }
+        h1,h2 {
+            text-align: center;
+            /*color: #d3da34;*/
+        }
+        h2 {
+            margin-top: 1rem;
+        }
+        .content,.content1 {
+            text-align: center;
+            margin: auto;
+        }
+
+        .ok-btn {
+            text-align: center;
+            width: 50%;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 2rem;
+            margin: 1rem auto;
+            background: #f9feff;
+            padding: 0.5rem 1rem;
+        }
+        .icon-base{
+            -webkit-transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            position: relative;
+            top: 0;
+            margin: auto;
+            color: #f44336;
+            font-size: 50px !important;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .win-icon-base{
+            -webkit-transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            position: relative;
+            top: 0;
+            margin: auto;
+            color: #f44336;
+            font-size: 33px;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .icon-base-gray{
+            -webkit-transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            position: relative;
+            top: 0;
+            margin: auto;
+            color: #585858;
+            font-size: 50px !important;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        .icon-animation {
+            animation: border-ani .3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-out;
+        }
+        @keyframes border-ani {
+            from{
+                transform: scale(1);
+                /*border:0 solid rgba(255,0,0,0);*/
+            }
+            to{
+                transform: scale(1.2);
+                /*border:2rem solid rgba(247, 62, 62, 1);*/
+            }
+        }
+        .level-btn{
+            text-align: center;
+            border: 2px solid #ff9e80;
+            border-radius: 2rem;
+            background: #fffbef;
+            width: 75%;
+            padding: .3rem;
+            margin: .5rem auto;
+        }
+        .model-back {
+            display: none;
+            width: 100%;
+            height:100%;
+            /*display: flex;*/
+        }
+        .selectLevel{
+            width: 50%;
+            margin: auto;
+        }
+        #selectOne{
+            background: #ff0062;
+        }
+        #selectTwo{
+            background: #e3e3e3;
+        }
+        #win-heart-contains {
+            width: auto;
+            height: auto;
+        }
+        .win-heart{
+            transition: all .5s ease-in-out;
+            /*background: gold;*/
+            float: left;
+        }
+        ul>li{
+            font-size: .3rem;
+
+        }
+        #scoreSpan,#endScoreSpan {
+            margin: auto auto 4px auto;
+            color: #fc1b4b;
+        }
+        .swiper-slide > p{
+            padding: 1rem;
+        }
+    </style>
+
+</head>
+<link rel="stylesheet" href="iconfont.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
+<body>
+    <div id="selectOne" class="model" style="display: block">
+        <div class="model-back" id="selectLevel">
+            <div class="selectLevel">
+                <h1>选择难度</h1>
+                <div class="level-btn" onclick="start('easy')">轻柔</div>
+                <div class="level-btn" onclick="start('difficult')">爱心雨</div>
+            </div>
+        </div>
+
+        <div style="text-align: center">
+            <div style="margin:3rem auto auto auto;width: 100px;height: 100px;background: url('img/head-img.png');background-size: cover"></div>
+            <h1>思思学姐爱满屋</h1>
+            <h2>介绍</h2>
+            <h3>- 控制方法 -</h3>
+            <ul>
+                <li><strong>左右</strong>移动屏幕下方的思思学姐迎接每一份爱</li>
+            </ul>
+            <h3>- 得分规则 -</h3>
+            <ul>
+                <li>吃掉红色跳动爱心</li>
+            </ul>
+            <h3>- 减分规则 -</h3>
+            <ul>
+                <li>吃掉了灰心</li>
+                <li>没有吃到红色爱心</li>
+            </ul>
+            <h3>- 胜利条件 -</h3>
+            <ul>
+                <li>总分大于等于22</li>
+            </ul>
+            <div class="ok-btn" onclick="selectLevel()"><div style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>开始</div>
+        </div>
+    </div>
+
+    <div id="selectTwo" class="model" style="display: none">
+        <div class="model-back" id="timePlaneModel">
+            <div class="selectLevel">
+                <h1 id="timePlane">3</h1>
+            </div>
+        </div>
+
+        <div id="winPlaneModel" style="display: none;width: 100%;height: 100%">
+            <div class="selectLevel" style="width: 60%">
+                <h1 id="">收集完成！</h1>
+                <img src="img/063183e9cf5ac619392ffdc02a6a0950.gif" style="width: 100%">
+                <div class="level-btn" onclick="win()">释放爱</div>
+            </div>
+        </div>
+        <span id="inp" style="position: fixed;z-index: 99">
+            <div id='heart' style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span><span id='right-top-score' style="color: #f44336;"></span></div>
+        </span>
+        <div class="content">
+
+            <div id="box" style="display: flex;position:absolute;bottom:0;width: 100px;height: 100px;background: url('img/head-img.png');background-size: cover" >
+                <span id="scoreSpan"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectThree" class="model" style="display: none">
+        <div class="content1">
+            <div id="desirePlane" style="background: #fff0c1;display: none;width: 100%;height: 100%;position: absolute">
+                <div class="selectLevel" style="width: 60%">
+                    <h1>七夕快乐，思思学姐</h1>
+                    <h3 style="color: #F44336;">我会努力变得更好</h3>
+                    <h3 style="color: #F44336;">希望喜欢的人跟期待的事，都再快点到来吧</h3>
+                    <div class="level-btn" onclick="desire()">许个愿</div>
+                </div>
+            </div>
+            <div id="win-heart-contains">
+
+            </div>
+            <div id="box1" style="display: flex;position:absolute;bottom:0;width: 100px;height: 100px;background: url('img/head-img.png');background-size: cover" >
+                <span id="endScoreSpan"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectFour" style="width:100%;height:100%;display: none;position: relative">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-0677a82c9bf31ba56df5247601543bf8_hd.jpg" style="width: 100%">
+                    <h3>小众香水礼盒</h3>
+                    <p>
+                    国产香水中的“仿香”较多，缺乏独立的香型研发能力，毕竟祖国盛产“康帅傅”、“雷碧”之类的产品，但那都是过去了，国内第一款真正意义上的巴莉奥香水，首个拥有签约调香师的香水品牌，采用法国进口香料，创造出属于东方世界的独特嗅觉体验。
+                    礼盒装里面一共有10支香水、10个故事、10种味道。
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(0)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-feb21118dff5fad41327c2142f9c8865_hd.jpg" style="width: 100%">
+                    <h3>正版HelloKitty纳米喷雾补水仪</h3>
+                    <p>
+                        补水仪的作用我大致知道些，反正就是对皮肤好，让人看起来水灵灵的，化妆前后好像也很需要。然而这款不止可爱，又可以当2200毫安充电宝，作为一款能轻松装进女生包包的补水仪充电宝Kitty猫粉色系萌物，我想了一夜没想到有什么缺点！
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(1)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-8e103bd558239953863ff012a6ea7944_hd.jpg" style="width: 100%">
+                    <h3>厄瓜多尔永生玫瑰花</h3>
+                    <p>
+                        进口的永生花，取材都是鲜玫瑰，采用特殊工艺制作，确保五六年不会凋谢
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(2)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-e6724d2855d10911a7ecb2dfb05d067f_hd.jpg" style="width: 100%">
+                    <h3>德国贝尔二代洁面仪</h3>
+                    <p>
+                        五档调节，如果皮肤薄就调低一些，皮肤厚就调高，因人因皮肤而异。 第三，刷毛更细致，假如用小象洗脸需要两遍，这个脸蛋上滚一次就好。功能性也增加了些，媳妇说下面部分是弄化妆品上去按摩脸用的。
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(3)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-e510d71fcb936e1b7a96a5c12d02c6a2_hd.jpg" style="width: 100%">
+                    <h3>多功能化妆镜台灯</h3>
+                    <p>
+                        有镜子，镜子边缘有补光灯，背面有氛围灯，开起来特温馨，充电的。 文艺范儿十足，又不失实用性。
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(4)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-fd720835de764ba0b23e12addaa05c88_hd.jpg" style="width: 100%">
+                    <h3>随身榨汁杯</h3>
+                    <p>
+                        每个女孩儿都有一个减肥梦，都爱吃水果。
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(5)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-22d68235df86a312e9acd0e68c4aafdd_hd.jpg" style="width: 100%">
+                    <h3>恋爱100挑战套盒</h3>
+                    <p>
+                        爱情中有酸甜苦辣，但终归是幸福的，过来人告诉你，不论是一起分享快乐、还是吵的面红耳赤，都是以后美好的回忆，再也回不去，如果有，那就是纸和笔。
+                        恋爱挑战一百条，以传统纸质形式给你们留下永久的回忆，一起泡温泉，一起滑雪，一起跨年
+                    </p>
+                    <div class="like-btn-plane" onclick="selectLiwu(6)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-d7ac5828a7fb49f7971f4682c71dbf48_hd.jpg" style="width: 100%">
+                    <h3>粉红豹网红公仔</h3>
+                    <p>
+                        粉色系，可爱的要死。</p>
+                    <div class="like-btn-plane" onclick="selectLiwu(7)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-19e4a4b3b7ce96c91330e09e616693a8_hd.jpg" style="width: 100%">
+                    <h3>创意牛奶瓶灯</h3>
+                    <p>
+                        一杯酷似牛奶的灯</p>
+                    <div class="like-btn-plane" onclick="selectLiwu(8)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-a521cc5698f19f8b8a8f45c78a7327eb_r.jpg" style="width: 100%">
+                    <h3>小清新加湿器</h3>
+                    <p>
+                        静音的设计，在日常学习、工作中不会被打扰</p>
+                    <div class="like-btn-plane" onclick="selectLiwu(9)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/liwu/v2-7fa76a7506ec97181d9a6789300fa8e0_hd.jpg" style="width: 100%">
+                    <h3>极地补水仪风扇套盒</h3>
+                    <p>
+                        补水仪可以把液体水雾化成纳米水分子喷出，迅速被皮肤吸收，起到补水和清洁肌肤的作用。手持风扇比起一般风扇，有小巧轻便、操作简单等优点。
+                        补水仪与手持风扇的结合，完美的解决了炎热的烦恼。</p>
+                    <div class="like-btn-plane" onclick="selectLiwu(10)">
+                        <div class="like-btn"><div  style='display: flex'><span class='win-icon-base icon-animation icon iconfont icon-Heart'></span></div>喜欢</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        let totalTime=0;
+        let id=0;
+        let posX = 0;
+        let startX = 0;
+        let currX = 0;
+        let heartArr = [];
+        let interval = null;//游戏时钟
+        let addHeartTime = 1.5;//几秒产生一个爱心
+        let gameTime = 10;//游戏运行
+        let minSpeed = 5;//爱心最低下落速度
+        let maxSpeed = 10;//爱心最高下落速度
+        let time = 0;
+        let catchNum = 0;
+        let outNum = 0;
+        let score = 0;
+        let chance = 3;//出现灰色爱心的概率 1 / (chance + 1)
+        let totalScore = 22;
+        let winHeartHeight = 0;
+        let winHeartPos = [2, 7, 12, 17, 26, 28, 30, 31, 32, 33, 34, 38, 37, 36, 42, 51, 56, 61, 67, 63, 58, 53]
+        let winHeartEndPos = [];
+        $(function () {
+            init()
+        })
+        function selectLevel() {
+            $(".model-back").css("display","flex")
+        }
+
+        function init(){
+            //游戏初始化
+            document.addEventListener('touchstart',touch, false);
+            document.addEventListener('touchmove',touch, false);
+            document.addEventListener('touchend',touch, false);
+            //start()
+        }
+
+        function liwu() {
+            var swiper = new Swiper('.swiper-container', {
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'fraction',
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                on:{
+                    slideNextTransitionStart: function(event){
+                        //alert('开始切换');
+                        //console.log(swiper.activeIndex)
+                        selectLiwu(swiper.activeIndex,"change")
+                    },
+                    slidePrevTransitionStart: function(event){
+                        //alert('开始切换');
+                        //console.log(swiper.activeIndex)
+                        selectLiwu(swiper.activeIndex,"change")
+                    },
+                },
+            });
+        }
+
+        function selectLiwu(index,type) {
+            var data = {
+                "index":index,
+                "time":new Date().getTime(),
+                "type":type?type:"like"
+            };
+
+            $.ajax({
+                url:'https://dev.visio8.com/api/hi',
+                type:'POST',
+                dataType:'json',
+                contentType:'application/json;charset=UTF-8',
+                data:JSON.stringify(data),
+                success:function(data, status){
+                    console.log(data);
+                }
+            });
+
+        }
+
+        function desire() {
+            //许愿
+            $("#selectThree").css("display","none")
+            $("#selectFour").css("display","block")
+
+            //展示礼物
+            liwu()
+        }
+
+        function win() {
+            $("#selectTwo").css("display","none");
+            $("#selectThree").css("display","block");
+
+            winHeartHeight = ((parseFloat($("html").css("height"))-100) / 15.0)
+
+
+            let offsetLeft = (parseFloat($("html").css("width")) - (winHeartHeight * 5)) /2
+            let index = 0;
+
+            for(let i = 0; i < 14;i ++) {
+                for(let j = 0; j < 5;j ++) {
+                    var aniHeartDomHtml = "<div class='win-heart' style='position: absolute;top:{top};left:{left}'><div id='heart' style='display: flex'><span id='icon' class='win-icon-base icon-animation icon iconfont icon-Heart' style='font-size: "+winHeartHeight+"px !important;'></span></div></div>"
+                    if(winHeartPos.indexOf(index) != -1) {
+                        $("#win-heart-contains").append(aniHeartDomHtml.replace("{top}",(parseFloat($("html").css("height")) - 50)+"px").replace("{left}", (parseFloat($("html").css("width")) /2)-winHeartHeight/2+"px"))
+                        winHeartEndPos.push({
+                            x: j * winHeartHeight+offsetLeft,
+                            y: i * winHeartHeight,
+                        })
+                    }
+                    index++;
+                }
+            }
+
+            $(".win-icon-base").css("font-size",winHeartHeight+"px !important")
+
+
+            $("#win-heart-contains").css(
+                {
+                    "height":winHeartHeight*14+"px",
+                    "width":winHeartHeight*5+"px",
+                }
+            )
+            $(".win-heart").css(
+                {
+                    "height":winHeartHeight+"px",
+                    "width":winHeartHeight+"px",
+                }
+            )
+            $("#box1").css("left",(parseFloat($("html").css("width")) /2)-100/2+"px")
+
+            let eles = $(".win-heart")
+            let count = 0;
+
+            let int = setInterval(function(){
+                if(count == eles.length) {
+                    clearInterval(int)
+
+
+                    setTimeout(function(){
+                        $("#desirePlane").css({"display":"flex","z-index":"99","position":"absolute"})
+                    },1000)
+                } else {
+                    eles.eq(count).css({
+                        "top":winHeartEndPos[count].y,
+                        "left":winHeartEndPos[count].x
+                    })
+                    count++
+                    $("#endScoreSpan").text(--totalScore)
+                }
+            },300)
+
+        }
+
+
+        function randomNum(maxNum, minNum, decimalNum) {
+            var max = 0, min = 0;
+            minNum <= maxNum ? (min = minNum, max = maxNum) : (min = maxNum, max = minNum);
+            switch (arguments.length) {
+                case 1:
+                    return Math.floor(Math.random() * (max + 1));
+                    break;
+                case 2:
+                    return Math.floor(Math.random() * (max - min + 1) + min);
+                    break;
+                case 3:
+                    return (Math.random() * (max - min) + min).toFixed(decimalNum);
+                    break;
+                default:
+                    return Math.random();
+                    break;
+            }
+        }
+
+        function addHeart(){
+            let y = randomNum(0,parseInt($("html").css("width"))-50,0)+"px"
+            let speed = randomNum(minSpeed,maxSpeed,0)
+            //添加爱心
+
+            let heartDomHtml =
+                "<div class='heart' type='red-heart' speed='"+speed+"' style='width: 50px;height:50px;position: absolute;top: 0px;left:"+y+"'>" +
+                "   <div id=\"heart\" style=\"display: flex\">\n" +
+                "        <span id=\"icon\" class=\"icon-base icon-animation icon iconfont icon-Heart\"></span>\n" +
+                "    </div>" +
+                "</div>"
+
+            let grayHeartDomHtml =
+                "<div class='heart' type='gray-heart' speed='"+speed+"' style='width: 50px;height:50px;position: absolute;top: 0px;left:"+y+"'>" +
+                "   <div id=\"heart\" style=\"display: flex\">\n" +
+                "        <span id=\"icon\" class=\"icon-base-gray icon iconfont icon-Heart\"></span>\n" +
+                "    </div>" +
+                "</div>"
+
+
+
+            if(randomNum(0,chance,0) != 0){
+                $(".content").append(heartDomHtml);
+            } else {
+                $(".content").append(grayHeartDomHtml);
+            }
+
+        }
+
+        function draw(){
+            let heartEles = $(".heart");
+            let speed = 0
+            let heartType = null;
+            for(let i = 0; i < heartEles.length; i ++){
+                speed = heartEles.eq(i).attr('speed');
+                heartType = heartEles.eq(i).attr('type');
+                heartEles.eq(i).css("top",(parseInt(heartEles.eq(i).css("top"))+parseInt(speed))+"px")
+                //判断是否截获
+                if(isCatch(parseInt(heartEles.eq(i).css("left"))
+                    ,parseInt(heartEles.eq(i).css("top")))){
+                    catchNum++
+
+                    if(heartType == 'gray-heart'){
+                        score --;
+                    } else if(heartType == 'red-heart') {
+                        score ++;
+                    }
+                    heartEles.eq(i).remove()
+                } else {
+                    //判断是否遗漏
+                    if (isOverFlow(parseInt(heartEles.eq(i).css("top")))) {
+                       if(heartType == 'red-heart') {
+                            score --;
+                        }
+                        outNum++
+                        heartEles.eq(i).remove()
+                    }
+                }
+            }
+            $("#scoreSpan").text(score)
+            $("#right-top-score").text(score)
+
+            if(score == 22){
+                //alert("success")
+                clearInterval(interval)
+                $("#winPlaneModel").css("display","flex")
+                //win()
+            }
+        }
+        
+        function start(level) {
+            $("#selectOne").css("display","none")
+            $("#selectTwo").css("display","block")
+
+            switch (level){
+                case "easy":
+                    break;
+                case "difficult":
+                    addHeartTime = 0.1;//几秒产生一个爱心
+                    gameTime = 10;//游戏运行
+                    minSpeed = 5;//爱心最低下落速度
+                    maxSpeed = 10;//爱心最高下落速度
+                    break;
+            }
+
+
+            let time = 3;
+            let s = setInterval(function(){
+                if(time == 0){
+                    $("#timePlaneModel").remove()
+                    $("#timePlane").remove()
+                    clearInterval(s)
+                    addHeart()
+                    interval = setInterval(function(){
+                        time ++;
+                        let totalTime = time * gameTime;
+                        if(totalTime % (addHeartTime*1000)  == 0){
+                            //console.log("add")
+                            addHeart()
+                        }
+                        draw()
+                        console.log("run")
+                    },gameTime)
+                } else {
+                    time--;
+                    $("#timePlane").text(time)
+                }
+            },1000)
+
+
+
+        }
+
+        function isCatch(x,y){
+            if(x >= posX && x+50 <= posX + 100 && y + 50 > (parseInt($("html").css("height"))-100)){
+                console.log("catch")
+                return true;
+            }
+        }
+
+        function isOverFlow(y){
+            //超出范围检查
+            if(y+50 >= parseInt($("html").css("height"))){
+                console.log("out")
+                return true;
+            }
+            return false;
+        }
+
+        function touch (event){
+            var event = event || window.event;
+
+            var oInp = document.getElementById("inp");
+            //oInp.innerHTML ="catch="+catchNum+",out="+outNum +",score="+score;
+            switch(event.type){
+                case "touchstart":
+                    startX = event.touches[0].clientX
+                    //oInp.innerHTML ="catch="+catchNum+",out="+outNum;
+                    //oInp.innerHTML = "Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";
+                    break;
+                case "touchend":
+                    //oInp.innerHTML = "<br>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")";
+                    break;
+                case "touchmove":
+                    event.preventDefault();
+                    currX = event.touches[0].clientX
+
+                    if(currX < startX) {
+                        //$("#box").css({"left":posX+"px"})
+                        console.log("left move..")
+                    } else {
+                        //$("#box").css({"left":posX+(currX - startX)+"px"})
+                        console.log("right move..")
+                    }
+                    posX = posX+(currX - startX)
+                    startX = currX
+
+                    //let posX = event.touches[0].clientX
+                    //console.log(posX + 100 > parseInt($("html").css("width")))
+                    if(posX<0){
+                        $("#box").css({"left":0+"px"})
+                        return;
+                    }
+                    if(posX + 100 >= parseInt($("html").css("width"))){
+                        $("#box").css({"left":(parseInt($("html").css("width"))-100)+"px"})
+                        return;
+                    }
+                    $("#box").css({"left":posX+"px"})
+
+                    //oInp.innerHTML = "<br>Touch moved (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";
+                    break;
+            }
+
+        }
+    </script>
+</body>
+</html>

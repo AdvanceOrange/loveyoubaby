@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="width: 100%;height:100%"></div>
+<select class="page1">
+
+</select>
+<script src="http://www.17sucai.com/preview/1528155/2019-01-01/fireflies/js/jquery.min.js"></script>
+<script src="http://www.17sucai.com/preview/1528155/2019-01-01/fireflies/js/TweenMax.min.js"></script>
+<script>
+    function draw(){
+        var drawing = document.getElementById("drawing"),
+            pic = document.getElementById('flower'); //获取描边图片
+        drawing.width = '500';
+        drawing.height = '500';
+        if (drawing.getContext){
+            var content = drawing.getContext("2d"),
+                radian = 0,
+                radian_add = Math.PI/40;
+            content.translate(250,250);
+            function heart(){
+                X = getX1(radian);
+                Y = getY1(radian);
+                content.drawImage(pic,X,Y,25,25);   //在给定坐标绘制给定大小的图片
+                radian+=radian_add;
+                if (radian > (2*Math.PI)){ //绘制完整的心型线后取消间歇调用
+                    clearInterval(intervalId);
+                }
+            }
+            intervalId = setInterval(heart,100);  //设置间歇调用，间隔为100ms
+        }
+    }
+
+
+
+
+
+
+    var fireflies = 25;
+    var $container = $(".container");
+    var $containerWidth = $container.width();
+    var $containerHeight = $container.height();
+    var master = new TimelineMax();
+
+    for (var i = 0; i < fireflies; i++) {
+        var firefly = $('<div class="firefly"></div>');
+        TweenLite.set(firefly, {
+            x: Math.random() * $containerWidth,
+            y: Math.random() * $containerHeight
+        });
+        $container.append(firefly);
+        flyTheFirefly(firefly);
+    }
+
+    function flyTheFirefly(elm) {
+        var flyTl = new TimelineMax();
+        var fadeTl = new TimelineMax({
+            delay: Math.floor(Math.random() * 2) + 1,
+            repeatDelay: Math.floor(Math.random() * 6) + 1,
+            repeat: -1
+        });
+
+        fadeTl.to(
+            [elm],
+            0.25,
+            { opacity: 0.25, yoyo: true, repeat: 1, repeatDelay: 0.2, yoyo: true },
+            Math.floor(Math.random() * 6) + 1
+        );
+
+        flyTl
+            .set(elm, {scale: Math.random() * 0.75 + 0.5})
+            .to(elm, Math.random() * 100 + 100, {
+                bezier: {
+                    values: [
+                        {
+                            x: Math.random() * $containerWidth,
+                            y: Math.random() * $containerHeight
+                        },
+                        {
+                            x: Math.random() * $containerWidth,
+                            y: Math.random() * $containerHeight
+                        }
+                    ]
+                },
+                onComplete: flyTheFirefly,
+                onCompleteParams: [elm]
+            });
+    }
+</script>
+</body>
+</html>

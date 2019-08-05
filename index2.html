@@ -83,6 +83,16 @@
                 transform: rotate(360deg);
             }
         }
+
+        #currentProgress::after {
+            box-shadow: 0 0 30px 0 white;
+            content: '';
+            width: 5px;
+            height: 5px;
+            display: inline-block;
+            float: right;
+            background: white;
+        }
     </style>
 </head>
 <body>
@@ -122,7 +132,6 @@
     background: url(img/4a6cd739b6003af3768a6e59392ac65c1038b612.jpg);">
     </div>
         <div style="
-    overflow: hidden;
     height: 5px;
     width: 70%;
     margin: auto;" id="progress">

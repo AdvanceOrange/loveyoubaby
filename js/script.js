@@ -2,7 +2,7 @@ var AudioContext = AudioContext || webkitAudioContext;
 var context = new AudioContext;
 //加载媒体
 // var audio = new Audio("mp3/Half-blood Kakashi - Stay With Me【鬼怪OST】(Stringed Music Remix)（Cover：朴灿烈／Punch）.mp3");
-var audio = new Audio("mp3/Madilyn Bailey - Fetish.mp3");
+var audio = new Audio("mp3/JUJU - この夜を止めてよ.mp3");
 //创建节点
 var source = context.createMediaElementSource(audio);
 var analyser = context.createAnalyser();
@@ -126,12 +126,12 @@ var showFPS = (function(){
         if(!e) e=document.createElement('span');
         pe=pid?document.getElementById(pid):document.getElementsByTagName('body')[0];
         e.innerHTML = "fps: " + fps;
-        pe.appendChild(e);
         if(fps >= 40) {
             pe.style.color="#8bc34a";
         } else {
             pe.style.color="#ff4031";
         }
+        pe.appendChild(e);
     }
     return {
         setParentElementId :  function(id){pid=id;},

@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 缩放动画需要定义meta，否则会出现横向滚动条-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .section1{
+            transition: all 1.3s cubic-bezier(.03,1.04,.48,.98);
+            opacity: 0;
+            width: 100%;height: 100%;background: #fffce5
+        }
+        .section1Fade{
+            opacity: 0;
+        }
+        .icon-base{
+            -webkit-transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            transition: all 1.6s cubic-bezier(.03,1.04,.48,.98);
+            position: relative;
+            top: 0;
+            margin: auto;
+            color: #f44336;
+            font-size: 7.5rem !important;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        .show{
+            opacity: 1;
+        }
+        .icon-animation {
+            animation: border-ani .5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-out;
+        }
+
+        .icon-pause {
+            animation-play-state: paused;
+        }
+        .icon-zoom-fade {
+            transform: scale(13);
+            -webkit-transform: scale(13);
+        }
+
+        @keyframes border-ani {
+            from{
+                transform: scale(1);
+                /*border:0 solid rgba(255,0,0,0);*/
+            }
+            to{
+                transform: scale(1.1);
+                /*border:2rem solid rgba(247, 62, 62, 1);*/
+            }
+        }
+        .slogon {
+            font-family: "Raleway",'Century Gothic','TeXGyreAdventor',sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #999;
+            text-align: center;
+        }
+        .mail {
+            opacity: 0;
+            color: #4c4c4c;
+            background: radial-gradient(circle closest-side at 60% 43%, #f5eef0 26%, rgba(187,0,51,0) 27%), radial-gradient(circle closest-side at 40% 43%, #f5eef0 26%, rgba(187,0,51,0) 27%), radial-gradient(circle closest-side at 40% 22%, #de6177 45%, rgba(221,51,85,0) 46%), radial-gradient(circle closest-side at 60% 22%, #de6177 45%, rgba(221,51,85,0) 46%), radial-gradient(circle closest-side at 50% 35%, #de6177 30%, rgba(221,51,85,0) 31%), radial-gradient(circle closest-side at 60% 43%, #f5eef0 26%, rgba(187,0,51,0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 43%, #f5eef0 26%, rgba(187,0,51,0) 27%) 50px 50px, radial-gradient(circle closest-side at 40% 22%, #de6177 45%, rgba(221,51,85,0) 46%) 50px 50px, radial-gradient(circle closest-side at 60% 22%, #de6177 45%, rgba(221,51,85,0) 46%) 50px 50px, radial-gradient(circle closest-side at 50% 35%, #de6177 30%, rgba(221,51,85,0) 31%) 50px 50px;
+            background-color: #f5eef0;
+            background-size: 100px 100px;
+        }
+        .mailSummary{
+            width: 100%;
+            height: 100%;
+            background: url("img/younamebg.jpg");
+            background-size: cover;
+        }
+
+
+
+
+        /************-----section2**************/
+        .font-base {
+            margin: auto;
+            font-size: 4rem;
+        }
+
+
+        /*section{*/
+        /*opacity: 1;*/
+        /*transition: all 1s;*/
+        /*}*/
+
+
+        :root {  --color-heart: PaleVioletRed;  --color-he: DarkGrey;  --color-she: Turquoise;  --color-lightest: #ffffff;  --color-darkest: #333333;}:after,:before {  content: "";}.stage {  position: relative;  margin: 0 auto;  width: 346px;  height: 300px; }.text {  text-align: center;  font-family: "Itim", cursive;  font-size: 2.5em;  margin-bottom: 3em;}.couple {  position: relative;  height:300px;}.couple *,.couple *:after,.couple *:before {  position: absolute;}.couple:after {  background: var(--color-he);  opacity:.25;  height: 40px;  width:100%;  position: absolute;  bottom: 0;  left: 10px;  border-radius: 100%;  z-index: -1;}.heart {  background-color: var(--color-heart);  height: 20px;  transform: rotate(-45deg);  width: 20px;  left: 50%;}.heart:before,.heart:after {  background-color: var(--color-heart);  border-radius: 50%;  height: 20px;  width: 20px;  top: -10px;}.heart:before {  right: -10px;  bottom: 0;  top: auto;}.floating {  animation-name: floating;  animation-duration: 3s;  animation-iteration-count: infinite;  animation-timing-function: ease-in-out;}@keyframes floating {  from {    transform: translate(0, 0px) rotate(-45deg);  }  65% {    transform: translate(0, 15px) rotate(-45deg);  }  to {    transform: translate(0, -0px) rotate(-45deg);  }}.bear {  height: 300px;  width: 200px;}.he *,.he *:after,.he *:before {  background: var(--color-he);}.she {  left: 160px;  transform: scaleX(-1) scale(0.85, 0.95);}.she *,.she *:after,.she *:before {  background: var(--color-she);  border-color: var(--color-she);}.ear--1,.ear--2 {  width: 25px;  height: 35px;  border-radius: 100%;  top: 1px;  left: 34px;  transform: skewY(20deg);}.ear--1:after,.ear--2:after {  background: var(--color-lightest);  content: "";  width: 8px;  height: 8px;  border-radius: 100%;  top: 8px;  left: 9px;}.ear--2 {  left: 115px;  transform: skewY(-15deg);}.body {  height: 220px;  width: 100px;  top: 20px;  left: 40px;  transform: skewY(-2deg);}.body:after {  background: rgba(255, 255, 255, 0.8);  border-radius: 100%;  height: 110px;  width: 70px;  right: 5px;  top: 85px;}.muzzle {  height: 70px;  width: 70px;  left: 90px;  top: 30px;  border-radius: 10px;  transform: rotate(55deg);}.muzzle:before,.muzzle:after {  height: 60px;  width: 20px;  right: 0px;  border-radius: 100%;  transform: rotate(5deg);  top: -15px;}.muzzle:before {  transform: rotate(45deg);  top: -24px;  right: 19px;}.eye--1,.eye--2 {  background: var(--color-darkest);  height: 10px;  width: 10px;  border-radius: 50%;  left: 117px;  top: 35px;}.eye--2 {  left: 80px;  top: 38px;}.she .eye--2 {  left: 80px;  top: 42px;}.nose {  background: var(--color-darkest);  height: 20px;  width: 25px;  border-radius: 100%;  left: 150px;  top: 50px;}.mouth {  height: 20px;  width: 25px;  border-radius: 100%;  border-bottom: #333 4px solid;  background: none;  left: 120px;  top: 67px;  transform: rotate(45deg);}.leg--1,.leg--2 {  border-radius: 10px;  width: 20px;  height: 60px;  top: 220px;  left: 40px;}.leg--2 {  left: 120px;}.leg--1:after,.leg--2:after {  border-radius: 10px;  width: 20px;  height: 60px;  left: 5px;  transform: rotate(10deg);}.leg--2:after {  transform: rotate(-10deg);  left: -5px;}.arm--1 {  top: 110px;  left: -25px;  background: none;  width: 130px;  height: 70px;  border: solid 20px #000;  border-color: var(--color-he) transparent transparent transparent;  border-radius: 50%/100% 100% 0 0;  transform: rotate(-45deg);}.she .arm--1 {  border: solid 20px #000;  border-color: var(--color-she) transparent transparent transparent;}.she .arm--1:after {  background: var(--color-she);}.arm--1:after {  height: 20px;  width: 20px;  background: var(--color-he);  border-radius: 100%;  left: 6px;  top: 5px;}.arm--2 {  transform: rotate(45deg);  height: 20px;  width: 70px;  top: 135px;  left: 120px;}.arm--2:after {  height: 25px;  width: 30px;  background: var(--color-he);  border-radius: 100%;  right: -20px;  bottom: -5px;}.she .arm--2:after {  background: var(--color-she);  height: 25px;  width: 30px;}.he .hand {  height: 25px;  width: 10px;  background: var(--color-he);  border-radius: 100%;  top: 167px;  left: 188px;  z-index: 100;  transform: rotate(45deg);}
+    </style>
+    <link rel="stylesheet" href="iconfont.css">
+</head>
+<body onload="">
+<script src="js/jquery.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/typing.min.js"></script>
+<script src="js/typed.js"></script>
+<script src="js/jquery.leoTextAnimate.js"></script>
+<script type="text/javascript">
+    var startTime = 0;//开始时间戳
+    var endTime = 0;//结束时间戳
+    //场景定义
+    var sections = [
+        {
+            id:'section1',
+            start:function(){
+                var slef = this;
+                //开始执行
+                var html = '<section class="section1" style="" id='+this.id+'>\n' +
+                    // '<svg xmlns:xlink="http://www.w3.org/1999/xlink" t="1558538532142" class="icon icon-animation" style="margin: auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" version="1.1" p-id="7519" width="120" height="120"><defs><style type="text/css"/></defs><path d="M704 192c-68.693333 0-148.992 77.866667-192 128-43.008-50.133333-123.306667-128-192-128C198.442667 192 128 286.805333 128 407.466667c0 133.674667 128 275.2 384 424.533333 256-149.333333 384-288 384-416 0-120.661333-70.442667-224-192-224z" fill="#f44336" p-id="7520"/></svg>'+
+                    '    <div id="sanjiao" style="width: 0px;height: 0px"></div>\n' +
+                    '    <div id="heart" style="display: flex">\n' +
+                    '        <span id="icon" class="icon-base icon-animation icon iconfont icon-Heart"></span>\n' +
+                    '    </div>\n' +
+                    '    <p class="slogon">/* <span class="typed-quotes">new way to read &amp; write markdown.</span><span class="typed-cursor">|</span> */</p>\n' +
+                    '</section>'
+
+                $("body").append(html);
+                $("#"+slef.id).animate({
+                    opacity:1
+                },10,function(){
+
+                })
+
+
+                this.method.init();
+                $("#heart").click(function(){
+                    if(slef.method.validTime(slef)) {
+                        slef.end();
+                    }
+                })
+            },
+            end:function(){
+                var self = this;
+                $("#"+this.id).addClass("section1Fade");
+                $("#icon").css("animation","xxxxxx .5s")
+                setTimeout(function(){
+                    $("#icon").addClass("icon-pause icon-zoom-fade");
+                },10)
+
+                // $("#icon").css("transfrom","scale(3)");
+                //alert('end')
+
+                //$("#"+this.id).css({"opacity":0})
+                //执行完毕
+                //$("#"+this.id).remove();
+                setTimeout(function () {
+                    changeSection(1, function(){
+                        $("#"+self.id).remove();
+                    })
+                },700)
+                //changeSection(1)
+            },
+            method:{
+                validTime:function(self){
+                    //return true;
+                    var thetime = '2019-05-26 17:20:00';
+                    var endTime = '2019-10-27 23:59:59';
+
+                    var d=new Date(Date.parse(thetime.replace(/-/g,"/")));
+                    var endD=new Date(Date.parse(endTime.replace(/-/g,"/")));
+
+                    var curDate=new Date();
+                    if(d <=curDate && curDate <= endD){
+                        return true;
+                    }else{
+                        self.method.toast("还没到时间，不可以打开")
+                        return false;
+                    }
+                },
+                toast:function (msg,duration){
+                    duration=isNaN(duration)?3000:duration;
+                    var m = document.createElement('div');
+                    m.innerHTML = msg;
+                    m.style.cssText="max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;bottom: 10%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
+                    document.body.appendChild(m);
+                    setTimeout(function() {
+                        var d = 0.5;
+                        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+                        m.style.opacity = '0';
+                        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+                    }, duration);
+                },
+                init:function(){
+                    var sanjiaoEl = document.getElementById("sanjiao")
+                    sanjiaoEl.style.borderRight = (document.body.clientWidth / 2) +"px solid transparent"
+                    sanjiaoEl.style.borderLeft = (document.body.clientWidth / 2) +"px solid transparent"
+                    sanjiaoEl.style.borderTop = (document.body.clientHeight / 2) +"px solid #F44336"
+
+                    $(".typed-quotes").typed({
+                        strings: ["如果天天都能看到你，已经是今世最好的福气了。","我喜欢的样子，你都有。", "这个世界一点都不温柔，还好有你。", "始于心动，终于白首，拥之则安，伴之则暖。 <span style='color:#d14836'>❤</span>"],
+                        typeSpeed: 50,
+                        contentType: 'html',
+                        loop: true,
+                        backDelay: 2000
+                    });
+                }
+            }
+        },
+        {
+            id:'section2',
+            start:function(){
+                //#030a1c
+                //#fffce5 淡黄
+                //#ff8dc7 粉红
+                //#e91e64 深红
+
+                //color: #fff2f2;
+
+                var self = this;
+                var html = '<section id='+this.id+'><div id="particles-js" style="background: #e91e64;position: absolute;width: 100%;height: 100%;opacity: 0;transition: opacity .4s ease-in"><canvas class="particles-js-canvas-el" width="1322" height="774" style="width: 100%; height: 100%;"></canvas></div></section>'
+                $("body").append(html);
+                setTimeout(function(){
+                    $("#particles-js").css('opacity',1)
+                },10)
+
+                var htmltext1 = "<div id='fontContains' style='display: flex;position: absolute;z-index: 2;width: 100%;height: 100%'>" +
+                    "<div id='textContent' style='margin: auto;font-size: 4rem;opacity: 0;color:#fff2f2'>眼前这位美丽的少女</div>" +
+                    "</div>";
+                $("#"+this.id).append(htmltext1);
+                $("#fontContains > div").animate({
+                    opacity: 1,
+                    // left: "+=50",
+                    // height: "toggle"
+                }, 4000, function() {
+                    $("#fontContains > div").animate({
+                        opacity: 0,
+                    }, 1000, function() {
+                        $("#textContent").text("你好丫 ヽ(✿ﾟ▽ﾟ)ノ")
+                        $("#fontContains > div").animate({
+                            opacity: 1,
+                        }, 3000, function() {
+                            $("#fontContains > div").animate({
+                                opacity: 0,
+                            }, 1000, function() {
+
+                                $("#textContent").text("我有一个秘密要告诉你")
+                                $("#fontContains > div").animate({
+                                    opacity: 1,
+                                }, 3000, function() {
+                                    $("#fontContains > div").animate({
+                                        opacity: 0,
+                                    }, 1000, function() {
+                                        $("#textContent").text("你愿意听吗")
+                                        $("#fontContains > div").animate({
+                                            opacity: 1,
+                                        }, 3000, function() {
+                                            setTimeout(function(){
+                                                //$("#textContent").append("<a>,想</a>")
+
+                                                changeSection(2, function(){
+                                                    $("#"+self.id).remove()
+                                                })
+                                            },2000)
+                                        })
+                                    })
+
+                                });
+                            });
+                        });
+                    });
+                    // Animation complete.
+                });
+
+
+
+                this.method.init()
+
+
+            },
+            method:{
+                init:function () {
+                    particlesJS('particles-js', {
+                        "particles" : {
+                            "number" : {
+                                "value" : 60,
+                                "density" : {
+                                    "enable" : true,
+                                    "value_area" : 800
+                                }
+                            },
+                            "color" : {
+                                "value" : "#bfece3"//#ff97c6
+                            },
+                            "shape" : {
+                                "type" : "circle",
+                                "stroke" : {
+                                    "width" : 0,
+                                    "color" : "#362cff"
+                                },
+                                "polygon" : {
+                                    "nb_sides" : 5
+                                },
+                                "image" : {
+                                    "src" : "img/github.svg",
+                                    "width" : 100,
+                                    "height" : 100
+                                }
+                            },
+                            "opacity" : {
+                                "value" : 1,
+                                "random" : true,
+                                "anim" : {
+                                    "enable" : true,
+                                    "speed" : 1,
+                                    "opacity_min" : 0,
+                                    "sync" : true
+                                }
+                            },
+                            "size" : {
+                                "value" : 20,
+                                "random" : true,
+                                "anim" : {
+                                    "enable" : false,
+                                    "speed" : 4,
+                                    "size_min" : 0.3,
+                                    "sync" : false
+                                }
+                            },
+                            "line_linked" : {
+                                "enable" : false,
+                                "distance" : 150,
+                                "color" : "#ffffff",
+                                "opacity" : 0.4,
+                                "width" : 1
+                            },
+                            "move" : {
+                                "enable" : true,
+                                "speed" : 1,
+                                "direction" : "none",
+                                "random" : true,
+                                "straight" : false,
+                                "out_mode" : "out",
+                                "bounce" : false,
+                                "attract" : {
+                                    "enable" : false,
+                                    "rotateX" : 600,
+                                    "rotateY" : 600
+                                }
+                            }
+                        },
+                        "interactivity" : {
+                            "detect_on" : "canvas",
+                            "events" : {
+                                "onhover" : {
+                                    "enable" : true,
+                                    "mode" : "bubble"
+                                },
+                                "onclick" : {
+                                    "enable" : false,
+                                    "mode" : "repulse"
+                                },
+                                "resize" : true
+                            },
+                            "modes" : {
+                                "grab" : {
+                                    "distance" : 100,
+                                    "line_linked" : {
+                                        "opacity" : 0.8
+                                    }
+                                },
+                                "bubble" : {
+                                    "distance" : 250,
+                                    "size" : 4,
+                                    "duration" : 2,
+                                    "opacity" : 1,
+                                    "speed" : 3
+                                },
+                                "repulse" : {
+                                    "distance" : 400,
+                                    "duration" : 0.4
+                                },
+                                "push" : {
+                                    "particles_nb" : 4
+                                },
+                                "remove" : {
+                                    "particles_nb" : 2
+                                }
+                            }
+                        },
+                        "retina_detect" : true
+                    });
+
+
+                    // var typing = new Typing({
+                    //     source: document.getElementById('source'),
+                    //     output: document.getElementById('output'),
+                    //     delay: 80
+                    // });
+                    // typing.start();
+                    /*
+                      particleground(document.body, {
+                          dotColor: '#d2d2d2',
+                          lineColor: '#d2d2d2',
+                          density: 20000,
+                      });*/
+                    //var intro = document.getElementById('intro');
+                    //intro.style.marginTop = - intro.offsetHeight / 2 + 'px';
+                }
+            }
+        },
+        {
+            id:'section3',
+            bottomCount:0,
+            start:function(){
+                //#030a1c
+                var self = this;
+
+                var html = '<section id="'+this.id+'" class="mail"></section>'
+                $("body").append(html);
+
+                var html1 = '<h1 style="text-align: center;position: relative;padding-top:3rem;font-size: 2rem">写给你的一封信</h1>' +
+                    '<p style="position: relative;padding:2rem;font-size: 1.2rem" id="source"><strong style="line-height: 3.23;font-size: 1.4rem">亲爱的思思学姐</strong><br>' +
+                    '你好呀！还记得四年之前在教室让你手写Scanner的使用吗，那个时候我们刚开始学java，scanner的使用非常的麻烦，导包，创建对象，使用这三步缺一不可,但思思学姐却能毫不犹豫的写出来，也许思思学姐早已忘记这件事情，但是这件事让我对你产生了非常好的印象，之前学html的时候你就经常受到老师的表扬，来教室特别早，听课也认真，所以我觉得你是一个爱学习的人，我们真正产生交流便是从此刻开始的。<br><br>\n' +
+                    '\n' +
+                    '\n' +
+                    '思思学姐在我心里一直是长发飘飘，认真而且安静的人，\n' +
+                    '想起和你的时光，便是一幕幕讨论学习情景，语音远程抑或是就在你身边和你一起看每一行代码，能和思思学姐一起讨论学习是很开心的事情，思思学姐每次都很认真呀，记得在东山公寓第一次进女生宿舍，哈哈，居然是被思思学姐邀请讨论学习(*^▽^*)。\n' +
+                    '\n<br><br>' +
+                    '\n' +
+                    '在大学里面我也经历了一段感情，情绪低落的那段时间中思思学姐也经常和我谈心，让我重新认可自己，同时也在这段感情上帮助我很多，虽然最后没有什么结果，但好在经历过后我也能更加勇敢了，之后我便一心学习了，不再考虑感情的事情了，这也让我忽视了我身边一直有你这样一个好女孩，有时候我在想喜欢的人是不是在非常遥远的地方，在世界的某一个角落中，人总是容易忽视身边最重要的东西呢。\n' +
+                    '\n<br><br>' +
+                    '\n' +
+                    '我向来不会掩饰自己的感情，我告诉你了，那代表我真的喜欢你了，以前我总认为要让对方喜欢，必须要做一些让对方喜欢的事情，不过那样很可能会导致单方面付出，爱一定是两个人互相的结果，两个人在一起最重要的是开心，鼓励对方做喜欢的事情，相互促成，让对方都变成更好的自己，这也是我一直以来都不断想要学习的理由，并不是有多么喜欢代码，只是既然作出选择，便要为此付出努力，也为了能遇见更加优秀的你。\n' +
+                    '\n<br><br>' +
+                    '\n' +
+                    '我的告白对你来说可能有点突然，但是希望你感受到的更多的是惊喜而不是诧异，我有偶尔放出信号呀，可是思思学姐好像并没有感受到呢(ノへ￣、)，不过也是因为我自己没有说清楚，没有什么实际的行动。\n' +
+                    '\n<br><br>' +
+                    '\n' +
+                    '我想我有必要自我介绍一下，阐述自己的优势，(*￣▽￣*)ブ哈哈哈，本人脾气极好，温柔体贴，喜欢唱歌，绘画，钢琴，游戏，我认为任何时候都应该宠着女朋友，换句话说，任何时候我都能忍受你的小脾气，陪你逛街，看电影，出去玩，甚至唱歌哄你睡觉，你想要做的事情我都愿意去陪着你，随着相处你一定能发现我更多的优点，并且我也挺喜欢胡歌哦，毕竟我和胡歌是一个姓嘛，思思学姐是不是想说，原来你是这样的胡凡，每次听到你这样说，我都好想笑，思思学姐这样叫名字太长，我以后就叫你思思吧。\n' +
+                    '\n<br><br>' +
+                    '\n' +
+                    '想必思思在之前的学习中肯定怕麻烦我，有很多时候就没找我讨论对吧，现在好啦我可以告诉你，任何时候，思思都可以找我说话，不限工作时间\n' +
+                    '我也有很多缺点，但是我希望和思思一起变成更优秀的人，这就是我要说的话。' +
+                    '</p>\n';
+                var foot = "<p style='text-align: right'><strong style=\"font-size: 1.2rem;padding-right: 2rem\">胡凡</strong></p>" +
+                    "<p style='text-align: right'><strong style=\"font-size: 1.2rem;padding-right: 2rem;\">2019-05-20</strong><br><br></p>"
+                $("#"+this.id).append(html1).append(foot);
+                $("#"+this.id).animate({
+                    opacity:1
+                },1300,function(){
+                        self.method.init(self)
+                    //})
+                })
+
+
+            },
+            method:{
+                toast:function (msg,duration){
+                    duration=isNaN(duration)?3000:duration;
+                    var m = document.createElement('div');
+                    m.innerHTML = msg;
+                    m.style.cssText="max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;bottom: 10%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
+                    document.body.appendChild(m);
+                    setTimeout(function() {
+                        var d = 0.5;
+                        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+                        m.style.opacity = '0';
+                        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+                    }, duration);
+                },
+                bodyScroll:function (event){
+                    event.preventDefault();
+                },
+                init:function (self) {
+                    //var self = this;
+
+                    $(window).scroll(function() {
+                        //self.method.toast(Math.ceil($(document).scrollTop())+"。"+($(document).height() - $(window).height()))
+                        //console.log(self.musicEle.paused)
+                        //toast 播放一段钢琴曲承托一下气氛
+                        if ($(document).scrollTop()<=0){
+                            if(self.bottomCount > 0) {
+                                $("#"+self.id).animate({
+                                    opacity:0
+                                },1000,function(){
+                                    changeSection(3,function(){
+                                        $("#"+self.id).remove();
+                                    })
+                                })
+
+                                //document.body.addEventListener('touchmove',self.bodyScroll,false);
+                                // $('body').css({'position':'fixed',"width":"100%"});
+
+                            }
+                            //$("#"+this.id).append(html1).append(foot);
+                            //alert("滚动条已经到达顶部为0");
+                        }
+
+                        if (Math.ceil($(document).scrollTop()) >= $(document).height() - $(window).height()) {
+                            self.method.toast("思思看完了吗？ 记得把页面滚动到最上面哦 ^ - ^")
+                            self.bottomCount ++;
+                            //alert("滚动条已经到达底部为" + $(document).scrollTop());
+
+
+                        }
+                    });
+
+
+                }
+            }
+        },
+        {
+            id:'section4',
+            musicEle:null,
+            start:function(){
+                //#030a1c
+                var self = this;
+                var model = "<div id='"+this.id+"' style='width: 100%;height:100%;position: fixed;top: 0;z-index: 2;display: flex'><audio id=\"bgMusic\" style='display: none' src=\"mp3/sanye.m4a\"></audio><div style=\"width: 100%;height: 100%;display: flex;background: rgba(0, 0, 0, 0.25098039215686274);top: 50%;left: 50%;position: absolute;transform: translate(-50%,-50%);z-index: 133;\" ><span id=\"text\" style='margin: auto;display: inline-block;color: white;font-size: 1.5rem'>嘻嘻ヾ(≧▽≦*)o，放点音乐衬托下气氛，点击继续吧！</span></div><span style='display: inline-block;margin: auto'><body><div class=\"stage\"><div class=\"couple\"><div class=\"heart floating\"></div><div class=\"bear he\"><div class=\"ear--1\"></div><div class=\"ear--2\"></div><div class=\"arm--1\"></div><div class=\"arm--2\"></div><div class=\"hand\"></div><div class=\"body\"></div><div class=\"muzzle\"></div><div class=\"eye--1\"></div><div class=\"eye--2\"></div><div class=\"nose\"></div><div class=\"mouth\"></div><div class=\"leg--1\"></div><div class=\"leg--2\"></div></div><div class=\"bear she\"><div class=\"ear--1\"></div><div class=\"ear--2\"></div><div class=\"arm--1\"></div><div class=\"arm--2\"></div><div class=\"body\"></div><div class=\"muzzle\"></div><div class=\"eye--1\"></div><div class=\"eye--2\"></div><div class=\"nose\"></div><div class=\"mouth\"></div><div class=\"leg--1\"></div><div class=\"leg--2\"></div></div></div></div></body></span></div>"
+                $("body").append(model)
+                self.musicEle = document.getElementById("bgMusic");
+                self.musicEle.load();
+                    $("#"+self.id).click(function () {
+                    //self.musicEle.addEventListener("canplay",function () {
+                        if(self.musicEle.paused) {
+                            self.method.playMusic(self)
+
+                            self.musicEle.addEventListener("ended",function () {
+                                $("#text").text("歌听完了，给思思看下我心中所向往的爱情吧，你看过宫崎骏的漫画吗？");
+                                $("#"+self.id).animate({
+                                    opacity:0
+                                },6000,function () {
+                                    $("#"+self.id).remove();
+                                    changeSection(4,function(){
+
+                                    })
+                                })
+
+                            })
+
+                                $("#text").animate({
+                                    opacity: 0,
+                                }, 2000, function() {
+                                    $("#text").text("思思可以在这个时间中回忆我们所发生的事情");
+                                    $("#text").animate({
+                                        opacity: 1,
+                                    }, 7000, function() {
+                                        $("#text").animate({
+                                            opacity: 0,
+                                        }, 3000, function() {
+
+                                            $("#text").text("也许我们在一起的时光并没有那么长")
+                                            $("#text").animate({
+                                                opacity: 1,
+                                            }, 7000, function() {
+                                                $("#text").animate({
+                                                    opacity: 0,
+                                                }, 3000, function() {
+                                                    $("#text").text("但是每一刻都是美好的")
+                                                    $("#text").animate({
+                                                        opacity: 1,
+                                                    }, 7000, function() {
+                                                        $("#text").animate({
+                                                            opacity: 0,
+                                                        }, 3000, function() {
+                                                            $("#text").text("每一刻都弥足珍贵")
+                                                            $("#text").animate({
+                                                                opacity: 1,
+                                                            }, 7000, function() {
+                                                                $("#text").animate({
+                                                                    opacity: 0,
+                                                                }, 3000, function() {
+                                                                    $("#text").text("你认真的思考着问题")
+                                                                    $("#text").animate({
+                                                                        opacity: 1,
+                                                                    }, 7000, function() {
+                                                                        $("#text").animate({
+                                                                            opacity: 0,
+                                                                        }, 3000, function() {
+                                                                            $("#text").text("每一次问题得到解决")
+                                                                            $("#text").animate({
+                                                                                opacity: 1,
+                                                                            }, 7000, function() {
+                                                                                $("#text").animate({
+                                                                                    opacity: 0,
+                                                                                }, 3000, function() {
+                                                                                    $("#text").text("思思就会情不自禁的笑起来")
+                                                                                    $("#text").animate({
+                                                                                        opacity: 1,
+                                                                                    }, 7000, function() {
+                                                                                        $("#text").animate({
+                                                                                            opacity: 0,
+                                                                                        }, 3000, function() {
+                                                                                            $("#text").text("你笑起来的样子真的很好看")
+                                                                                            $("#text").animate({
+                                                                                                opacity: 1,
+                                                                                            }, 7000, function() {
+
+                                                                                                $("#text").animate({
+                                                                                                    opacity: 0,
+                                                                                                }, 3000, function() {
+                                                                                                    $("#text").text("这一切都留在我的心里")
+                                                                                                    $("#text").animate({
+                                                                                                        opacity: 1,
+                                                                                                    }, 7000, function() {
+                                                                                                        $("#text").animate({
+                                                                                                            opacity: 0,
+                                                                                                        }, 3000, function() {
+                                                                                                            $("#text").text("思思如果想要一个人照顾")
+                                                                                                            $("#text").animate({
+                                                                                                                opacity: 1,
+                                                                                                            }, 7000, function() {
+                                                                                                                $("#text").animate({
+                                                                                                                    opacity: 0,
+                                                                                                                }, 3000, function() {
+                                                                                                                    $("#text").text("我愿意成为那个人")
+
+                                                                                                                    $("#text").animate({
+                                                                                                                        opacity: 1,
+                                                                                                                    }, 7000, function() {
+                                                                                                                        $("#text").animate({
+                                                                                                                            opacity: 0,
+                                                                                                                        }, 3000, function() {
+                                                                                                                            $("#text").text("静静听完这首钢琴曲吧，以后我会弹给你听")
+                                                                                                                            $("#text").animate({
+                                                                                                                                opacity: 1,
+                                                                                                                            }, 7000, function() {
+
+                                                                                                                            })
+
+                                                                                                                        })
+                                                                                                                    })
+                                                                                                                })
+                                                                                                            })
+
+                                                                                                        })
+                                                                                                    })
+
+                                                                                                })
+
+                                                                                            })
+
+                                                                                        })
+
+
+                                                                                    })
+
+                                                                                })
+
+
+                                                                            })
+
+                                                                        })
+
+
+                                                                    })
+
+                                                                })
+
+
+                                                            })
+
+                                                        })
+                                                    })
+                                                })
+
+                                            });
+                                        });
+                                    });
+                                });
+                                // Animation complete.
+                        }
+                    //})
+
+
+
+
+                })
+                // var html = '<section id="'+this.id+'" class="mailSummary">思思可以回忆一下我的样子，回忆我们一起的时光，听完这首歌吧！</section>'
+                // $("body").append(html);
+
+
+            },
+            method:{
+                playMusic:function(self){
+
+                        var v = 0;
+                        self.musicEle.volume = v;
+                        self.musicEle.play();
+                        setTimeout(function () {
+                            var t = setInterval(function () {
+                                v += 0.03;
+                                console.log('v1' + v);
+                                if (v <= 1) {
+                                    self.musicEle.volume = v;
+                                } else {
+                                    clearInterval(t);
+                                }
+                            }, 200);
+                        }, 500)
+
+                },
+                init:function (self) {
+                    //var self = this;
+                }
+            }
+        },
+        {
+            id:'section5',
+            videoEl:null,
+            start:function() {
+                var self = this;
+                var html = "<section style='position: relative;width:100%;height:100%' id='"+this.id+"'><div style='width: 100%;height: 100%; background: url(img/videoPlayBg.png);background-size: cover' id='playInfo'><span style='display: inline-block;position: absolute;top:50%;left: 50%;transform: translate(-50%,-50%);color:white'>点击屏幕开始播放哦</span></div><video id='videoEl' style='width: 100%;height:100%' src='video/悬崖上的金鱼公主剪辑.mp4'></video> </section>";
+                $("body").append(html)
+                this.videoEl = document.getElementById("videoEl");
+                $("#"+this.id).click(function () {
+                    if(self.videoEl.pause) {
+                        $("#playInfo").remove();
+                        self.videoEl.play();
+                        
+                        self.videoEl.addEventListener("ended",function () {
+                            alert("3")
+                            changeSection(5,function () {
+                                $("#"+self.id).remove()
+                            })
+                        })
+                    }
+                })
+
+            },
+            method:{
+                init:function(){
+
+                }
+            }
+        },
+        {
+            id:'section6',
+            videoEl:null,
+            start:function() {
+                var self = this;
+                var html = "<section id='"+this.id+"' style='width: 100%;height: 100%;background: #000;color: white;'><span id='endInfo' style='display: inline-block;position: absolute;top:50%;left: 50%;transform: translate(-50%,-50%);opacity: 0;font-size: 2.2rem'></span><canvas id=\"canvas\"></canvas></section>"
+                $("body").append(html);
+                this.method.init()
+                //结束记时
+                endTime = new Date().getTime();
+
+                //代码总字数
+                var codeLenght = $("html").text().length;
+                //制作用时 7天 35小时
+                var totalCreateTime = 35
+                //共用时
+                var totalTime = endTime - startTime;
+
+                $('#endInfo').text('程序即将运行结束')
+                setTimeout(function(){
+
+                    $('#endInfo').text('数据统计')
+                    $("#endInfo").animate({
+                        opacity: 1,
+                    }, 3000, function() {
+                        $("#endInfo").animate({
+                            opacity: 0,
+                        }, 1000, function() {
+                            $('#endInfo').text('代码总字符数: '+codeLenght)
+                            $("#endInfo").animate({
+                                opacity: 1,
+                            }, 3000, function() {
+                                $("#endInfo").animate({
+                                    opacity: 0,
+                                }, 1000, function() {
+                                    $('#endInfo').text('编写时长: 大于'+totalCreateTime+"小时")
+                                    $("#endInfo").animate({
+                                        opacity: 1,
+                                    }, 3000, function() {
+                                        $("#endInfo").animate({
+                                            opacity: 0,
+                                        }, 1000, function() {
+                                            $('#endInfo').text('谢谢思思看了'+(totalTime/1000)+"秒")
+                                            $("#endInfo").animate({
+                                                opacity: 1,
+                                            }, 3000, function() {
+                                                $("#endInfo").animate({
+                                                    opacity: 0,
+                                                }, 1000, function() {
+
+                                                    $('#endInfo').text('我们的故事，还没有结束...')
+                                                    $("#endInfo").animate({
+                                                        opacity: 1,
+                                                    }, 3000, function() {
+
+                                                        $("#endInfo").animate({
+                                                            opacity: 0,
+                                                        }, 1000, function() {
+
+                                                            $('#endInfo').text('我喜欢你， 思思')
+                                                            $("#endInfo").animate({
+                                                                opacity: 1,
+                                                            }, 3000, function() {
+                                                                setTimeout(function(){
+                                                                    //最后停留了一分钟
+                                                                    //播放彩蛋
+                                                                    changeSection(6,function () {
+                                                                        $('#'+self.id).remove()
+                                                                    })
+
+                                                                },60000)
+
+                                                            })
+
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+
+                        })
+
+                    })
+
+
+
+
+                },2000)
+
+
+
+
+
+
+
+            },
+            method:{
+                init:function(){
+// when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
+// not supported in all browsers though and sometimes needs a prefix, so we need a shim
+                    window.requestAnimFrame = ( function() {
+                        return window.requestAnimationFrame ||
+                            window.webkitRequestAnimationFrame ||
+                            window.mozRequestAnimationFrame ||
+                            function( callback ) {
+                                window.setTimeout( callback, 1000 / 60 );
+                            };
+                    })();
+
+// now we will setup our basic variables for the demo
+                    var canvas = document.getElementById( 'canvas' ),
+                        ctx = canvas.getContext( '2d' ),
+                        // full screen dimensions
+                        cw = window.innerWidth,
+                        ch = window.innerHeight,
+                        // firework collection
+                        fireworks = [],
+                        // particle collection
+                        particles = [],
+                        // starting hue
+                        hue = 120,
+                        // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
+                        limiterTotal = 5,
+                        limiterTick = 0,
+                        // this will time the auto launches of fireworks, one launch per 80 loop ticks
+                        timerTotal = 80,
+                        timerTick = 0,
+                        mousedown = false,
+                        // mouse x coordinate,
+                        mx,
+                        // mouse y coordinate
+                        my;
+
+// set canvas dimensions
+                    canvas.width = cw;
+                    canvas.height = ch;
+
+// now we are going to setup our function placeholders for the entire demo
+
+// get a random number within a range
+                    function random( min, max ) {
+                        return Math.random() * ( max - min ) + min;
+                    }
+
+// calculate the distance between two points
+                    function calculateDistance( p1x, p1y, p2x, p2y ) {
+                        var xDistance = p1x - p2x,
+                            yDistance = p1y - p2y;
+                        return Math.sqrt( Math.pow( xDistance, 2 ) + Math.pow( yDistance, 2 ) );
+                    }
+
+// create firework
+                    function Firework( sx, sy, tx, ty ) {
+                        // actual coordinates
+                        this.x = sx;
+                        this.y = sy;
+                        // starting coordinates
+                        this.sx = sx;
+                        this.sy = sy;
+                        // target coordinates
+                        this.tx = tx;
+                        this.ty = ty;
+                        // distance from starting point to target
+                        this.distanceToTarget = calculateDistance( sx, sy, tx, ty );
+                        this.distanceTraveled = 0;
+                        // track the past coordinates of each firework to create a trail effect, increase the coordinate count to create more prominent trails
+                        this.coordinates = [];
+                        this.coordinateCount = 3;
+                        // populate initial coordinate collection with the current coordinates
+                        while( this.coordinateCount-- ) {
+                            this.coordinates.push( [ this.x, this.y ] );
+                        }
+                        this.angle = Math.atan2( ty - sy, tx - sx );
+                        this.speed = 2;
+                        this.acceleration = 1.05;
+                        this.brightness = random( 50, 70 );
+                        // circle target indicator radius
+                        this.targetRadius = 1;
+                    }
+
+// update firework
+                    Firework.prototype.update = function( index ) {
+                        // remove last item in coordinates array
+                        this.coordinates.pop();
+                        // add current coordinates to the start of the array
+                        this.coordinates.unshift( [ this.x, this.y ] );
+
+                        // cycle the circle target indicator radius
+                        if( this.targetRadius < 8 ) {
+                            this.targetRadius += 0.3;
+                        } else {
+                            this.targetRadius = 1;
+                        }
+
+                        // speed up the firework
+                        this.speed *= this.acceleration;
+
+                        // get the current velocities based on angle and speed
+                        var vx = Math.cos( this.angle ) * this.speed,
+                            vy = Math.sin( this.angle ) * this.speed;
+                        // how far will the firework have traveled with velocities applied?
+                        this.distanceTraveled = calculateDistance( this.sx, this.sy, this.x + vx, this.y + vy );
+
+                        // if the distance traveled, including velocities, is greater than the initial distance to the target, then the target has been reached
+                        if( this.distanceTraveled >= this.distanceToTarget ) {
+                            createParticles( this.tx, this.ty );
+                            // remove the firework, use the index passed into the update function to determine which to remove
+                            fireworks.splice( index, 1 );
+                        } else {
+                            // target not reached, keep traveling
+                            this.x += vx;
+                            this.y += vy;
+                        }
+                    }
+
+// draw firework
+                    Firework.prototype.draw = function() {
+                        ctx.beginPath();
+                        // move to the last tracked coordinate in the set, then draw a line to the current x and y
+                        ctx.moveTo( this.coordinates[ this.coordinates.length - 1][ 0 ], this.coordinates[ this.coordinates.length - 1][ 1 ] );
+                        ctx.lineTo( this.x, this.y );
+                        ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)';
+                        ctx.stroke();
+
+                        ctx.beginPath();
+                        // draw the target for this firework with a pulsing circle
+                        ctx.arc( this.tx, this.ty, this.targetRadius, 0, Math.PI * 2 );
+                        ctx.stroke();
+                    }
+
+// create particle
+                    function Particle( x, y ) {
+                        this.x = x;
+                        this.y = y;
+                        // track the past coordinates of each particle to create a trail effect, increase the coordinate count to create more prominent trails
+                        this.coordinates = [];
+                        this.coordinateCount = 5;
+                        while( this.coordinateCount-- ) {
+                            this.coordinates.push( [ this.x, this.y ] );
+                        }
+                        // set a random angle in all possible directions, in radians
+                        this.angle = random( 0, Math.PI * 2 );
+                        this.speed = random( 1, 10 );
+                        // friction will slow the particle down
+                        this.friction = 0.95;
+                        // gravity will be applied and pull the particle down
+                        this.gravity = 1;
+                        // set the hue to a random number +-20 of the overall hue variable
+                        this.hue = random( hue - 20, hue + 20 );
+                        this.brightness = random( 50, 80 );
+                        this.alpha = 1;
+                        // set how fast the particle fades out
+                        this.decay = random( 0.015, 0.03 );
+                    }
+
+// update particle
+                    Particle.prototype.update = function( index ) {
+                        // remove last item in coordinates array
+                        this.coordinates.pop();
+                        // add current coordinates to the start of the array
+                        this.coordinates.unshift( [ this.x, this.y ] );
+                        // slow down the particle
+                        this.speed *= this.friction;
+                        // apply velocity
+                        this.x += Math.cos( this.angle ) * this.speed;
+                        this.y += Math.sin( this.angle ) * this.speed + this.gravity;
+                        // fade out the particle
+                        this.alpha -= this.decay;
+
+                        // remove the particle once the alpha is low enough, based on the passed in index
+                        if( this.alpha <= this.decay ) {
+                            particles.splice( index, 1 );
+                        }
+                    }
+
+
+
+// draw particle
+                    Particle.prototype.draw = function() {
+
+                        ctx. beginPath();
+                        // move to the last tracked coordinates in the set, then draw a line to the current x and y
+                        ctx.moveTo( this.coordinates[ this.coordinates.length - 1 ][ 0 ], this.coordinates[ this.coordinates.length - 1 ][ 1 ] );
+                        ctx.lineTo( this.x, this.y );
+                        ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
+                        ctx.stroke();
+
+
+                    }
+
+// create particle group/explosion
+                    function createParticles( x, y ) {
+                        // increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
+                        var particleCount = 30;
+                        while( particleCount-- ) {
+                            particles.push( new Particle( x, y ) );
+                        }
+                    }
+
+// main demo loop
+                    function loop() {
+                        // this function will run endlessly with requestAnimationFrame
+                        requestAnimFrame( loop );
+
+                        // increase the hue to get different colored fireworks over time
+                        hue += 0.5;
+
+                        // normally, clearRect() would be used to clear the canvas
+                        // we want to create a trailing effect though
+                        // setting the composite operation to destination-out will allow us to clear the canvas at a specific opacity, rather than wiping it entirely
+                        ctx.globalCompositeOperation = 'destination-out';
+                        // decrease the alpha property to create more prominent trails
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+                        ctx.fillRect( 0, 0, cw, ch );
+                        // change the composite operation back to our main mode
+                        // lighter creates bright highlight points as the fireworks and particles overlap each other
+                        ctx.globalCompositeOperation = 'lighter';
+
+                        // var text = "HAPPY BIRTHDAY RIYA !!";
+                        // ctx.font = "50px sans-serif";
+                        // var textData = ctx.measureText(text);
+                        // ctx.fillStyle = "rgba("+parseInt(random(0,255))+","+parseInt(random(0,255))+","+parseInt(random(0,255))+",0.3)";
+                        // ctx.fillText(text,cw /2-textData.width/2,ch/2);
+
+                        // loop over each firework, draw it, update it
+                        var i = fireworks.length;
+                        while( i-- ) {
+                            fireworks[ i ].draw();
+                            fireworks[ i ].update( i );
+                        }
+
+                        // loop over each particle, draw it, update it
+                        var i = particles.length;
+                        while( i-- ) {
+                            particles[ i ].draw();
+                            particles[ i ].update( i );
+                        }
+
+                        // launch fireworks automatically to random coordinates, when the mouse isn't down
+                        if( timerTick >= timerTotal ) {
+                            if( !mousedown ) {
+                                // start the firework at the bottom middle of the screen, then set the random target coordinates, the random y coordinates will be set within the range of the top half of the screen
+
+                                for(var h=0;h<50;h++)
+                                {
+                                    fireworks.push( new Firework( cw / 2, ch/2, random( 0, cw ), random( 0, ch  ) ) );
+                                }
+
+
+                                timerTick = 0;
+                            }
+                        } else {
+                            timerTick++;
+                        }
+
+                        // limit the rate at which fireworks get launched when mouse is down
+                        if( limiterTick >= limiterTotal ) {
+                            if( mousedown ) {
+                                // start the firework at the bottom middle of the screen, then set the current mouse coordinates as the target
+                                fireworks.push( new Firework( cw / 2, ch/2, mx, my ) );
+                                limiterTick = 0;
+                            }
+                        } else {
+                            limiterTick++;
+                        }
+                    }
+
+// mouse event bindings
+// update the mouse coordinates on mousemove
+                    canvas.addEventListener( 'mousemove', function( e ) {
+                        mx = e.pageX - canvas.offsetLeft;
+                        my = e.pageY - canvas.offsetTop;
+                    });
+
+// toggle mousedown state and prevent canvas from being selected
+                    canvas.addEventListener( 'mousedown', function( e ) {
+                        e.preventDefault();
+                        mousedown = true;
+                    });
+
+                    canvas.addEventListener( 'mouseup', function( e ) {
+                        e.preventDefault();
+                        mousedown = false;
+                    });
+
+// once the window loads, we are ready for some fireworks!
+                    loop();
+                }
+            }
+        },
+        {
+            id:'section7',
+            sleepMp3:null,
+            start:function() {
+                var self = this;
+                var html = "<section id='"+this.id+"' style='width: 100%;height:100%;background: url(img/flower.jpg);background-size: cover;background-position: bottom;display: flex;flex-direction:row;'>" +
+                    "<div style='margin:auto;text-align: center;color: white'><span style='font-size: 2.4rem;'>思思找到彩蛋了</span><br><span>点击屏幕就讲故事给你听，说到做到！</span></div>" +
+                    "<audio id='sleepMp3' src='mp3/睡前小故事1.mp3' style='display: none'></audio>" +
+                    "</section>"
+                $("body").append(html);
+                this.sleepMp3 = document.getElementById("sleepMp3")
+                self.sleepMp3.load();
+                $("#"+this.id).click(function () {
+                    if(self.sleepMp3.pause) {
+                        self.sleepMp3.play()
+                    }
+                })
+            }
+        }
+    ]
+
+    var textInfos = [
+        {
+            id:'t1',
+            el:$(""),
+            start:function () {
+
+            }
+        }
+    ]
+    function hello(){
+        alert("Android调用了JS的方法");
+        var sanjiaoEl = document.getElementById("sanjiao")
+        // sanjiaoEl.style.width = document.body.clientWidth +"px";
+        // sanjiaoEl.style.height = (document.body.clientHeight / 2) +"px";
+        sanjiaoEl.style.borderRight = (document.body.clientWidth / 2) +"px solid transparent"
+        sanjiaoEl.style.borderLeft = (document.body.clientWidth / 2) +"px solid transparent"
+        sanjiaoEl.style.borderTop = (document.body.clientHeight / 2 - 100) +"px solid #F44336"
+        // sanjiaoEl.style.borderTop = (document.body.clientHeight / 2) +"px solid green"
+    }
+
+    //切换场景
+    function changeSection(currentSectionIndex,fun){
+        sections[currentSectionIndex].start()
+        if(fun) fun()
+    }
+
+    function changeText(textInfo){
+        textInfo.el
+        textInfo.start()
+
+    }
+
+
+    window.onload=function(){
+        //开始记时
+        startTime = new Date().getTime();
+        changeSection(0, null)
+    }
+</script>
+</body>
+</html>
