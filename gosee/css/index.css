@@ -361,7 +361,7 @@ section > h2 {
 }
 
 .video_contains {
-    z-index: 999999999;
+    z-index: 1;
     width: 100%;
     margin: 0 auto;
 }
