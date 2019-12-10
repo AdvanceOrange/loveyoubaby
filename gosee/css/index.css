@@ -1,0 +1,526 @@
+/**
+ * @author/作者 进击の橙子君
+ * @date/时间 2019/12/1 23:27
+ * @Licenses/协议 GPLv3 此代码使用GPLv3协议，未经许可禁止修改。
+ * License Copyright: Copyright © 2007 Free Software Foundation, Inc.
+ * License License: "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed." (www.gnu.org/licenses/gpl-3.0.en.html).
+ * License Contact: Free Software Foundation (fsf.org).
+ */
+
+body {
+    opacity: 0;
+    transition: all 1.2s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+input:focus{outline:none;}
+.right {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    /* float: right; */
+    right: -60px;
+    color: #ded6c5;
+}
+.left {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    /* float: right; */
+    left: -60px;
+    color: #ded6c5;
+}
+.fa-angle-left:before {
+     margin: auto;
+     content: "\f104";
+ }
+.fa-angle-right:before {
+    margin: auto;
+    content: "\f105";
+}
+
+/*.arrowRight {*/
+    /*display: block;*/
+    /*height: 100%;*/
+    /*line-height: 699px;*/
+    /*padding-right: 20px;*/
+    /*position: relative;*/
+    /*top: -100%;*/
+/*}*/
+/*.arrowLeft {*/
+    /*display: block;*/
+    /*height: 100%;*/
+    /*line-height: 699px;*/
+    /*padding-left: 20px;*/
+    /*position: relative;*/
+    /*top: -100%;*/
+/*}*/
+.controlLogistical {
+    font-size: 130px;
+    position: relative;
+    top: -425px;
+    /*height: 100%;*/
+}
+/*导航栏CSS定义 --start*/
+header {
+    color: #FEFEFE;
+    /*line-height: 4.5;*/
+    height: 600px;
+    width: 100%;
+    min-width: 1280px;
+    /*background:url("images/banner2_old.jpg") no-repeat center top;*/
+    /*-webkit-transition: opacity .5s;*/
+    /*-moz-transition: opacity .5s;*/
+    /*-o-transition: opacity .5s;*/
+    /*transition: opacity .5s;*/
+    transition: background .6s ease-in-out;
+    -moz-transition: background .6s ease-in-out;
+    -webkit-transition: background .6s ease-in-out;
+    background-size: cover;
+    opacity: 1;
+}
+
+/*banner CSS样式 start*/
+.banner-control-li {
+    /*width: 15px;*/
+    /*height: 15px;*/
+    /*transition: background .4s;*/
+    /*border-radius: 40px;*/
+    /*margin: 0 15px 0 15px;*/
+    /*display: inline-block;*/
+    /*background: #acbbc6;*/
+    /*cursor: pointer;*/
+    /*content: " ";*/
+    width: 30px;
+    height: 7px;
+    transition: background .4s;
+    /* border-radius: 40px; */
+    margin: 0 15px 0 15px;
+    display: inline-block;
+    background: #acbbc6;
+    cursor: pointer;
+    content: " ";
+}
+
+.banner-control-li:hover {
+    background: #00BCD4;
+}
+
+.active {
+    /*width: 15px;*/
+    /*height: 15px;*/
+    /*transition: background .4s;*/
+    /*border-radius: 40px;*/
+    /*margin: 0 15px 0 15px;*/
+    /*display: inline-block;*/
+    /*background: #1980c2;*/
+    /*content: " ";*/
+    width: 30px;
+    height: 7px;
+    transition: background .4s;
+    /* border-radius: 40px; */
+    margin: 0 15px 0 15px;
+    display: inline-block;
+    background: #00BCD4;
+    content: " ";
+}
+.banner-control {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /*display: inline-block;*/
+    /*margin:0 auto;*/
+    padding-top:160px;
+}
+
+
+/*新闻展示 newContent start*/
+.newContent {
+    min-width: 1280px;
+    width: 100%;
+    height: 370px;
+    padding-top: 20px;
+    /*background: #f5f5f5;*/
+    display: flex;
+}
+.newContent > div {
+    width: 50%;
+}
+.newContent > div > h3 {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(56, 60, 72);
+}
+.newContent > div > ul {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    /*background: #f5f0f0;*/
+}
+.newContent > div > ul > li {
+    width: 100%;
+}
+.newContent > div > ul > li > span {
+    display: inline-block;
+    width: 20%;
+    color: #9facbd;
+}
+.newContent > div > ul > li > a {
+    width: 79%;
+    display: inline-block;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.7);
+}
+.aboutInfo {
+    min-width: 1280px;
+    width: 100%;
+    padding:10px 0 10px 0;
+    margin:20px auto;
+    background: #f2f2f2;
+    text-align: center;
+    /*color:rgb(56, 60, 72);*/
+    color: #F44336;
+    font-size: 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/*合作案例 start*/
+.cooperation {
+    min-width: 1280px;
+    width: 100%;
+    padding-top: 50px;
+    background: url("../images/top_back.jpg");
+    background-size: cover;
+}
+
+section > h2 {
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    color: #383c48;
+    font-size: 32px;
+}
+
+.showCooperation {
+    width: 90%;
+    display: block;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.showCooperation > span {
+    transition: all .5s;
+    /*-ms-transform:scale(1,1); !* IE 9 *!*/
+    /*-webkit-transform: scale(1,1); !* Safari *!*/
+    /*transform: scale(1,1); !* 标准语法 *!*/
+
+    float:left;
+    width: 20%;
+    display: none;
+}
+.showCooperation > span:hover > a{
+    transform: rotateY(360deg);
+    color: red;
+}
+
+.showCooperation > span > a {
+    transform: rotateY(0deg);
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 20px;
+}
+.showCooperation > span > a > div:nth-child(2){
+    padding-top:20px;
+    color:#00bcd4;
+    font-size:20px;
+    font-family: 微软雅黑Regular;
+}
+.showCooperation > span > a > div:last-child{
+    color:#34495e;
+    font-size: 12px;
+    font-family: Arial Narrow;
+}
+
+.showCooperation > span > a > img{
+    transition: all 0.3s;
+    transform: rotate(0deg);
+    display: block;
+    border-radius: 180px;
+    margin: 0 auto;
+    width: 210px;
+    height: 210px;
+}
+
+/*!* 页脚 *!*/
+/*.footerInfo {*/
+/*display: flex;*/
+/*min-width: 1280px;*/
+/*width: 100%;*/
+/*height: 150px;*/
+/*background: #3C3D41;*/
+/*}*/
+/*.footerInfo > div {*/
+/*width: 70%;*/
+/*margin: auto;*/
+/*text-align: center;*/
+/*color: #888886;*/
+/*line-height: 1;*/
+/*}*/
+
+
+
+/*
+    文本颜色
+    color:#34495e;
+    小段链接颜色
+    color:#3498db
+    次要文本颜色
+    color:#acbbc6
+    body颜色
+    color:#eff3f5
+    更次要的文本颜色
+    color:#bdbdbd
+    提示信息颜色
+    color: #6b3612;
+    background-color: #fff7e7;
+    border: 1px solid #ded6c5;
+    拥挤链接颜色
+    color:#34495e
+
+    foot次要文本
+    color:#b8c4cc
+    foot链接
+    color:#7f8c8d;
+
+    阴影
+    color:
+    box-shadow: 0px 1px 2px rgba(0,0,0,.1);
+
+
+*/
+
+.video {
+    overflow-y: hidden;
+    min-width: 1280px;
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+}
+/*物流 start */
+.logistical ,.createFactory{
+    min-width: 1280px;
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+    background:#fff;
+    /*padding-bottom: 50px;*/
+}
+.logistical > div, .createFactory > div {
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    width: 1280px;
+    /*height: 699px;*/
+    margin: auto;
+    /*background: red;*/
+}
+.logistical > div > ul > li, .createFactory > div > ul > li{
+    /*transition: left 1s ease-in-out;*/
+    /*position: relative;*/
+    /*left: 0;*/
+    /*display: inline-block;*/
+    margin-bottom: 2rem;
+}
+.logistical > div > ul, .createFactory > div > ul {
+    max-width: 1100px;
+    margin: auto;
+    /*height: 100%;*/
+    /*overflow: hidden;*/
+    /*position: relative;*/
+    /*background: #f2f2f2;*/
+}
+
+
+
+/*生产基地*/
+.createFactory {
+    background: url("../images/hotel_back.jpg");
+    background-size: cover;
+}
+
+.createFactory > div > img, .logistical > div > img{
+    display: inline-block;
+    float: left;
+}
+
+.video {
+    padding-top: 50px;
+}
+
+.video_contains {
+    z-index: 999999999;
+    width: 100%;
+    margin: 0 auto;
+}
+.search-input {
+    background: rgba(255, 255, 255, 0.6901960784313725);
+    padding-left: 1rem;
+    user-select: none;
+    flex: 1.5;
+    border: none;
+}
+.search-input:focus{
+    background: #fff !important;
+}
+.search-input:focus ~ span {
+    background: rgb(255, 88, 34) !important;
+}
+div.site {
+    overflow: hidden
+}
+
+div.wrapper {
+    position: relative;
+    width: 75rem
+}
+
+div.wrapper.demo1 {
+    margin: 60px auto 0
+}
+
+div.wrapper:not(.demo1) {
+    margin: 80px auto 0
+}
+
+div.wrapper > h3 {
+    text-align: center;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+    /* border-radius: 1.4rem; */
+    /* background-color: #fff; */
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #222;
+}
+
+div.wrapper > ul.container {
+    position: relative;
+    height: 27rem;
+    margin: 0 auto;
+    transform: translate3d(0, 0, 0)
+}
+
+div.wrapper ul.container > li.cards_list {
+    border-radius: .3125rem;
+    background-color: #f4f4f4;
+    overflow: hidden
+}
+
+ul.container > li.cards_list > div.img > img {
+    display: block;
+    width: 20rem;
+    height: 13rem;
+}
+
+ul.container > li.cards_list > div.main_con {
+    padding: 0 1rem;
+    box-sizing: border-box
+}
+
+ul.container > li.cards_list > div.main_con h4.name {
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #424242
+}
+
+ul.container > li.cards_list > div.main_con p.content {
+    padding-top: 1rem;
+    height: 4.5rem;
+    font-size: .9rem;
+    color: #777;
+    text-align: justify;
+    line-height: 1.5rem
+}
+
+ul.container > li.cards_list > div.main_con p.label {
+    font-size: .9rem;
+    color: #555;
+    padding-top: 1rem;
+    padding-bottom: 2rem
+}
+
+div.wrapper.horizontal > ul.container {
+    width: 75rem
+}
+
+div.wrapper.vertical > ul.container {
+    width: 40rem
+}
+
+div.wrapper.horizontal ul.container > li.cards_list {
+    width: 20rem
+}
+
+div.wrapper.vertical ul.container > li.cards_list {
+    display: flex
+}
+
+i.btn-direct {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .7);
+    opacity: 0;
+    cursor: pointer;
+    z-index: 100;
+    transition: opacity ease 300ms
+}
+
+div.wrapper:hover i.btn-direct {
+    opacity: .6
+}
+
+i.btn-direct:hover {
+    opacity: .9 !important
+}
+
+i.btn-direct.btn-left {
+    left: 3rem
+}
+
+i.btn-direct.btn-right {
+    right: 3rem
+}
+
+i.btn-direct > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-top: .125rem solid #fff;
+    border-left: .125rem solid #fff
+}
+
+div.wrapper.horizontal i.btn-direct > span.shift-left {
+    transform: translate(-30%, -50%) rotate(-45deg)
+}
+
+div.wrapper.horizontal i.btn-direct > span.shift-right {
+    transform: translate(-70%, -50%) rotate(135deg)
+}
+
+div.wrapper.vertical i.btn-direct > span.shift-left {
+    transform: translate(-50%, -30%) rotate(45deg)
+}
+
+div.wrapper.vertical i.btn-direct > span.shift-right {
+    transform: translate(-50%, -70%) rotate(-135deg)
+}

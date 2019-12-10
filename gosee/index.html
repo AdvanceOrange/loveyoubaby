@@ -1,0 +1,582 @@
+<!--
+ * @author/作者 进击の橙子君
+ * @date/时间 $date$ $time$
+ * @Licenses/协议 GPLv3 此代码使用GPLv3协议，未经许可禁止修改。
+ * License Copyright: Copyright © 2007 Free Software Foundation, Inc.
+ * License License: "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed." (www.gnu.org/licenses/gpl-3.0.en.html).
+ * License Contact: Free Software Foundation (fsf.org).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="卓美，广告产品" charset="UTF-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/卓美广告.ico">
+    <title>首页_GOSEE</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/index.css");
+        @import url("css/foot.css");
+    </style>
+    <style>
+        .showCooperation > span:hover > a > img{
+            transform: rotate(360deg);
+        }
+        .video_contains:hover {
+            /*color: #00bcd4;*/
+            color: rgba(255, 255, 255, 1);
+        }
+        .video_contains {
+            font-weight: bold;
+            border-radius: 5px;
+            color: rgba(255, 255, 255, 0);
+            text-align: center;
+            cursor: pointer;
+            transition: all .4s;
+        }
+        .search-contains {
+            width: 450px;
+            margin:10px auto 0 auto;
+
+        }
+        .message {
+            display: none;
+            width: 400px;
+            padding: 1rem;
+            position: fixed;
+            z-index: 999;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: .4rem;
+            border: 2px solid #d6e9c6;
+            color: #3c763d;
+            background-color: #dff0d8;
+        }
+        .typed-quotes {
+            height:67px;
+            font-weight: 200;
+            text-align: center;
+            letter-spacing: 3px;
+            font-size: 3rem;
+            margin-top: 190px;
+        }
+        #bg {
+            transition: all .4s ease-in-out;
+            display: none;
+            background: rgba(0, 0, 0, 0.66);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 930;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="bg"></div>
+    <div class="message">
+        <p>修改成功</p>
+    </div>
+    <div class="contact" style="">
+        <div class="arrow" title="返回顶部" onclick="onTop()">
+            <span>TOP</span>
+        </div>
+        <div class="phone" title="联系电话"><span class="fa fa-phone"></span></div>
+    </div>
+    <header class="header">
+        <div class="nav-bg">
+            <div class="nav nav-text-shadow" final="false">
+                <a class="logo" href="index.html" style="color: #00BCD4 !important;">
+                    <span class="fa fa-envira" style="font-size: 1.7rem;color: #00BCD4 !important;"></span>
+                    <span style="margin-left:0.5rem;color: #00BCD4 !important;">{{lang.nav.logo}}</span>
+                </a>
+                <ul class="nav-ul">
+                    <li>
+                        <a name="menuTitle" class="nav-active" href="index.html">{{lang.nav.home}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="showmaterial.html">{{lang.nav.destination}}</a>
+                    </li>
+                    <li>
+                        <a href="scroll.html" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" onclick="javascript:return false;">{{lang.nav.hotel}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="flags.html">{{lang.nav.ticket}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" onclick="javascript:return false;">{{lang.nav.notes}} </a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                    </li>
+
+                    <li>
+                        <span name="menuTitle" href="contact.html" style="display: inline-block">
+                            <span class="fa fa-user-circle-o" style="color: #00BCD4;font-size: 1.7rem;vertical-align: middle;"></span>
+                        </span>
+                        <ul>
+                            <li><a href="javascript:;" @click="changeLanguage">{{lang.nav.user_menu.language}}</a></li>
+                            <li><a href="login.html" >{{lang.nav.user_menu.logout}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h1 class="typed-quotes"></h1>
+            <div class="search-contains">
+                <div style=" height: 40px; display: flex; border: 1px solid rgba(255,255,255,0.75);">
+                    <input class="search-input" v-bind:placeholder="lang.search.placeholder">
+                    <span style=" flex: 0.6;line-height: 40px;text-align: center;background: rgba(255,88,34,0.75);height: 100%;">{{lang.search.btn}}</span>
+                </div>
+            </div>
+        </div>
+        <ul class="banner-control">
+            <li class="banner-control-li" name="banner-control-li" data="0"></li>
+            <li class="banner-control-li" name="banner-control-li" data="1"></li>
+            <li class="banner-control-li" name="banner-control-li" data="2"></li>
+        </ul>
+    </header>
+
+    <section class="video" style="position: relative">
+        <h2>{{lang.like.title}}</h2>
+        <hr>
+        <div style="position: relative;height: 100%;overflow: hidden;">
+            <div @click="videoControll" class="video_contains" style="display: flex;top: 0px;position: absolute;width: 100%;height: 100%;">
+                <div style="margin: auto;">
+                    <span  v-bind:class="[videoState == 'pause' ? 'fa-play' : 'fa-pause','fa']" style="font-size: 60px;"></span>
+                    <br>
+                    <h1>{{videoState == 'pause' ? lang.like.videoPlayState : lang.like.videoPauseState}}</h1>
+                    <br>
+                    <p>{{lang.like.videoText}}</p>
+                </div>
+            </div>
+            <div>
+                <video id="video" poster="images/banner1.jpg" onplay="startPlay()" onmouseover="javascript:this.controls=true" onmouseout="javascript:this.controls=false" style="transition:width .3s ease-in-out;width: 950px; margin: 0 auto 50px auto; display: block;">
+                    <source src="video/【4K大片】这，就是北欧！.mp4" type="video/mp4">
+                </video>
+                <audio id="audio" src="video/【4K大片】这，就是北欧！.m4a"></audio>
+            </div>
+        </div>
+    </section>
+    <section class="cooperation">
+        <!--合作案例-->
+        <h2>{{lang.top.title}}</h2>
+        <hr>
+        <div class="showCooperation">
+            <div class="wrapper horizontal demo3" ondragstart="return false">
+                <h3></h3>
+                <ul class="container">
+                    <li class="cards_list" n="6" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: 180px; z-index: 4;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">醉刘的摄影狮</h4>
+                            <p class="content">
+                                准旗舰游戏拍照手机魅族 X8，不止有实力，还有最美刘海屏！
+                            </p>
+                            <p class="label">魅族 X8</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="7" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: 520px; z-index: 3;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">屌丝扮海绵</h4>
+                            <p class="content">
+                                “窗含西岭千秋雪” 魅族 16th 用旗舰双摄带你领略诗句中的美景。
+                            </p>
+                            <p class="label">魅族 16th</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="8" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: 860px; z-index: 2;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">郑金龙</h4>
+                            <p class="content">
+                                千元最强性能手机登场，高通骁龙 710 次旗舰级处理器加持，玩王者荣耀 Vulkan 模式请认准魅族 X8。
+                            </p>
+                            <p class="label">魅族 X8</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="9" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: 1200px; z-index: 1;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">歩惊云</h4>
+                            <p class="content">
+                                这款匠心精神打造的十五周年旗舰机，再不下手就要后悔啦~
+                            </p>
+                            <p class="label">魅族 15</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="10" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: 1540px; z-index: 0;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">Keicy520</h4>
+                            <p class="content">
+                                妙用 Flyme 分身，做生活和工作的「两面派」。
+                            </p>
+                            <p class="label">功能解析</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="0" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: -1860px; z-index: 0;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">小墨灰</h4>
+                            <p class="content">
+                                工作和学习中的沟通总离不开邮件，而 Flyme 邮箱的出色体验为我们带来的不只是生产力。
+                            </p>
+                            <p class="label">功能解析</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="1" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: -1520px; z-index: 1;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">xrx3p</h4>
+                            <p class="content">
+                                摄影离不开适当的后期，好在如今你可以在魅族手机上轻松完成操作。
+                            </p>
+                            <p class="label">摄影技巧</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="2" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: -1180px; z-index: 2;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">hooyeah</h4>
+                            <p class="content">
+                                魅族 Note9 邀请函 JK 服妹子出镜，谁才是最美游戏姬？
+                            </p>
+                            <p class="label">魅族 Note9</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="3" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: -840px; z-index: 3;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">不腻映像 </h4>
+                            <p class="content">
+                                轻奢旗舰魅族 16 X 惊艳亮相!经典汝窑白配色与小姐姐更搭哦~
+                            </p>
+                            <p class="label">魅族16X</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="4" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: -500px; z-index: 4;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">小墨灰</h4>
+                            <p class="content">
+                                做为一家讲究用户极致体验的手机厂商，魅族对于系统输入法依然费尽心思打磨。
+                            </p>
+                            <p class="label">魅族输入法功能解析</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="5" style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: -160px; z-index: 5;">
+                        <div class="img">
+                            <img src="images/banner0.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">王员外可爱多</h4>
+                            <p class="content">
+                                从「青年良品」到「国民拍照手机」，Note 系列依旧是最值得购买的千元机。
+                            </p>
+                            <p class="label">魅族 Note8</p>
+                        </div>
+                    </li>
+                </ul>
+                <i class="btn-direct btn-left">
+                    <span class="shift-left"></span>
+                </i>
+                <i class="btn-direct btn-right">
+                    <span class="shift-right"></span>
+                </i>
+            </div>
+        </div>
+    </section>
+    <section class="logistical">
+        <h2>{{lang.notes.title}}</h2>
+        <hr>
+        <div>
+            <ul>
+                <li>
+                    <a>
+                        <div style="display: flex;overflow: hidden;height: 200px;background: rgb(253, 253, 253);border-radius: 0.3rem;color: #212121;">
+                            <div style="flex: 1 1 0%;"><img src="images/banner1.jpg"
+                                                            style="height: 100%; width: 355px;"></div>
+                            <div style="flex: 3 1 0%; padding: 2rem;"><h1>标题</h1>
+                                <p>内容事发时短发短发舒服的沙发舒服的沙发上防辐射大丰收的方式打时短发时短发的沙发时短发的阿斯顿发送到发送到发送的说到发送到发送的阿斯顿发送到</p>
+                                <div><span>- 2019/10/20</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <div style="display: flex;overflow: hidden;height: 200px;background: rgb(253, 253, 253);border-radius: 0.3rem;color: #212121;">
+                            <div style="flex: 1 1 0%;"><img src="images/banner1.jpg"
+                                                            style="height: 100%; width: 355px;"></div>
+                            <div style="flex: 3 1 0%; padding: 2rem;"><h1>标题</h1>
+                                <p>内容事发时短发短发舒服的沙发舒服的沙发上防辐射大丰收的方式打时短发时短发的沙发时短发的阿斯顿发送到发送到发送的说到发送到发送的阿斯顿发送到</p>
+                                <div><span>- 2019/10/20</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <div style="display: flex;overflow: hidden;height: 200px;background: rgb(253, 253, 253);border-radius: 0.3rem;color: #212121;">
+                            <div style="flex: 1 1 0%;"><img src="images/banner1.jpg"
+                                                            style="height: 100%; width: 355px;"></div>
+                            <div style="flex: 3 1 0%; padding: 2rem;"><h1>标题</h1>
+                                <p>内容事发时短发短发舒服的沙发舒服的沙发上防辐射大丰收的方式打时短发时短发的沙发时短发的阿斯顿发送到发送到发送的说到发送到发送的阿斯顿发送到</p>
+                                <div><span>- 2019/10/20</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li style="text-align: right;color: #00BCD4;">
+                    more <span class="fa fa-angle-right"></span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="createFactory">
+        <h2>{{lang.hotel.title}}</h2>
+        <hr>
+        <div>
+
+            <div class="wrapper horizontal demo1" ondragstart="return false">
+                <h3>{{lang.hotel.text}}</h3>
+                <ul class="container">
+                    <li class="cards_list" n="5" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: -160px; z-index: 5; opacity: 1; transform: scale(1, 1);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//200517000001139spEB60_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">醉刘的摄影狮</h4>
+                            <p class="content">
+                                准旗舰游戏拍照手机魅族 X8，不止有实力，还有最美刘海屏！
+                            </p>
+                            <p class="label">魅族 X8</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="6" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: -40px; z-index: 4; opacity: 0.9; transform: scale(0.9, 0.9);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//200i0o000000f2f72EB07_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">屌丝扮海绵</h4>
+                            <p class="content">
+                                “窗含西岭千秋雪” 魅族 16th 用旗舰双摄带你领略诗句中的美景。
+                            </p>
+                            <p class="label">魅族 16th</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="7" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: 80px; z-index: 3; opacity: 0.81; transform: scale(0.81, 0.81);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//2001170000011dps13443_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">郑金龙</h4>
+                            <p class="content">
+                                千元最强性能手机登场，高通骁龙 710 次旗舰级处理器加持，玩王者荣耀 Vulkan 模式请认准魅族 X8。
+                            </p>
+                            <p class="label">魅族 X8</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="8" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: 200px; z-index: 2; opacity: 0.729; transform: scale(0.729, 0.729);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//20051700000113b0jEECA_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">歩惊云</h4>
+                            <p class="content">
+                                这款匠心精神打造的十五周年旗舰机，再不下手就要后悔啦~
+                            </p>
+                            <p class="label">魅族 15</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="9" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: 320px; z-index: 1; opacity: 0.6561; transform: scale(0.6561, 0.6561);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//200k1700000114z6qA2CB_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">Keicy520</h4>
+                            <p class="content">
+                                妙用 Flyme 分身，做生活和工作的「两面派」。
+                            </p>
+                            <p class="label">功能解析</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="9" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: 320px; z-index: 1; opacity: 0.6561; transform: scale(0.6561, 0.6561);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//200f1700000110t374417_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">Keicy520</h4>
+                            <p class="content">
+                                妙用 Flyme 分身，做生活和工作的「两面派」。
+                            </p>
+                            <p class="label">功能解析</p>
+                        </div>
+                    </li>
+                    <li class="cards_list" n="9" style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: 320px; z-index: 1; opacity: 0.6561; transform: scale(0.6561, 0.6561);">
+                        <div class="img">
+                            <img src="https://dimg04.c-ctrip.com/images//200m170000011a66q0DE5_W_1600_1200_Q70.jpg" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">Keicy520</h4>
+                            <p class="content">
+                                妙用 Flyme 分身，做生活和工作的「两面派」。
+                            </p>
+                            <p class="label">功能解析</p>
+                        </div>
+                    </li>
+                </ul>
+                <i class="btn-direct btn-left">
+                    <span class="shift-left"></span>
+                </i>
+                <i class="btn-direct btn-right">
+                    <span class="shift-right"></span>
+                </i>
+            </div>
+        </div>
+        <footer class="footerInfo">
+            <div>
+                <div>
+                    <div style="margin-top: 50px;float: left;">
+                        <ul>
+                            <li style="font-weight: bold;color: #c8cdd2">{{lang.foot.map}}</li>
+                            <li>
+                                <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" href="showmaterial.html">{{lang.nav.destination}}</a>
+                            </li>
+                            <li>
+                                <a href="scroll.html" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" onclick="javascript:return false;">{{lang.nav.hotel}}</a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" href="flags.html">{{lang.nav.ticket}}</a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" onclick="javascript:return false;">{{lang.nav.notes}} </a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                            </li>
+                        </ul>
+                        <p>Copyright © 2019 @进击的橙子君 All Rights Reserved | 鄂ICP备17025443号</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+</div>
+</body>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js" tppabs="http://www.zhuomeiad.com/js/dropMenu.js"></script>
+<script src="js/top.js" tppabs="http://www.zhuomeiad.com/js/top.js"></script>
+<script language="JavaScript" src="js/index.js" tppabs="http://www.zhuomeiad.com/js/index.js"></script>
+<script src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+
+<script src="js/language.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/commonVue.js"></script>
+<script>
+
+    function startPlay(){
+        document.getElementById("audio").play();
+    }
+
+    $(function(){
+        CommonVue.init();
+    })
+
+</script>
+
+<script>
+    (function(window,undefined){var Carousel=function(ele,obj){this.ele=ele;this.cardsList=this.ele.children();this.cardsNum=this.cardsList.length;this.direction=obj.direction?obj.direction:'horizontal';this.scale=obj.scale;this.transition=obj.transition||'500ms';this.transformOrigin=obj.transformOrigin;this.opacity=obj.opacity;this.offsetDistance=obj.offsetDistance;this.switchBtn=obj.switchBtn;this.isClickCard=obj.isClickCard||false;this.isAuto=obj.isAuto||false;this.interval=obj.interval||5000;this.n=0;this.mediant=Math.floor(this.cardsNum/2);this.cardsListArr=[].slice.call(this.cardsList);this.timer=null;this.cssObj={};this.certainStyle();this.switchEffect();this.cardsClick();this.switchBtnClick();this.autoMove();this.switchTimer();};Carousel.prototype={constructor:Carousel,switchTimer:function(){var carousel=this;if(this.isAuto){this.cardsList.on('mouseover',function(){clearInterval(carousel.timer);});this.cardsList.on('mouseout',function(){carousel.autoMove();});};},certainStyle:function(){this.cssObj.position='absolute';if(this.scale){this.scale.length==1&&this.scale.push(this.scale[0]);};if(this.direction=='horizontal'){this.cssObj.left='50%';this.availSize=this.ele.outerWidth();this.cardSize=this.cardsList.eq(0).outerWidth();}else if(this.direction=='vertical'){this.cssObj.top='50%';this.availSize=this.ele.outerHeight();this.cardSize=this.cardsList.eq(0).outerHeight();};this.offsetDistance=this.offsetDistance||this.availSize/(this.cardsNum-1);this.transformOrigin&&(this.cssObj.transformOrigin=this.transformOrigin);this.cssObj.transition=this.transition;},dynamicStyle:function(offsetIndex,offsetIndexAbs,reset){if(this.direction=='horizontal'){this.cssObj.marginLeft=-this.cardSize/2+this.offsetDistance*offsetIndex+'px';}else if(this.direction=='vertical'){this.cssObj.marginTop=-this.cardSize/2+this.offsetDistance*offsetIndex+'px';};this.cssObj.zIndex=reset;this.opacity&&(this.cssObj.opacity=Math.pow(this.opacity,offsetIndexAbs));this.scale&&(this.cssObj.transform='scale('+Math.pow(this.scale[0],offsetIndexAbs)+','+Math.pow(this.scale[1],offsetIndexAbs)+')');},switchEffect:function(){var carousel=this;var offsetNum=Math.abs(carousel.n-carousel.mediant);if(carousel.n==carousel.mediant){return;}else if(carousel.n>carousel.mediant){carousel.cardsListArr=carousel.cardsListArr.concat(carousel.cardsListArr.splice(0,offsetNum));}else{carousel.cardsListArr=carousel.cardsListArr.splice(carousel.cardsNum-offsetNum).concat(carousel.cardsListArr);};$(carousel.cardsListArr).each(function(i,e){var offsetIndex=i-carousel.mediant,offsetIndexAbs=Math.abs(offsetIndex),reset=carousel.mediant-offsetIndexAbs;carousel.dynamicStyle(offsetIndex,offsetIndexAbs,reset);$(e).css(carousel.cssObj);$(e).attr('n',i);});},cardsClick:function(){if(this.isClickCard){var carousel=this;$(carousel.cardsListArr).on('click',function(){carousel.n=$(this).attr('n');carousel.switchEffect();});};},prev:function(){var carousel=this;carousel.n=carousel.mediant-1;carousel.n<0&&(carousel.n=carousel.cardsNum-1);carousel.switchEffect();},next:function(){var carousel=this;carousel.n=carousel.mediant+1;carousel.n>carousel.cardsNum-1&&(carousel.n=0);carousel.switchEffect();},switchBtnClick:function(){var carousel=this;if(carousel.switchBtn){carousel.switchBtn.eq(0).on('click',function(){carousel.prev();if(carousel.isAuto){clearInterval(carousel.timer);carousel.cardsList.eq(carousel.n).one('transitionend',function(){carousel.autoMove();});};});carousel.switchBtn.eq(1).on('click',function(){carousel.next();if(carousel.isAuto){clearInterval(carousel.timer);carousel.cardsList.eq(carousel.n).one('transitionend',function(){carousel.autoMove();});};});};},autoMove:function(){var carousel=this;if(carousel.isAuto){clearInterval(carousel.timer);carousel.timer=setInterval(function(){carousel.next();},carousel.interval);};},};window.Carousel=Carousel;}(window));
+</script>
+
+<script>
+
+
+    $(document).ready(function () {
+
+        $("div.wrapper").each(function (i, e) {
+            $(e).attr("ondragstart", "return false");
+        });
+
+        var $demo1 = $("div.demo1"),
+            $demo2 = $("div.demo2"),
+            $demo3 = $("div.demo3"),
+            $demo4 = $("div.demo4");
+
+        console.time("t");
+
+        var carousel1 = new Carousel($demo1.children("ul.container"), {
+            opacity: .9,
+            scale: [.9],
+            transition: "400ms",
+            switchBtn: $demo1.children("i.btn-direct"),
+            offset: 1600,
+            isClickCard: true,
+            isAuto: true,
+            interval: 4000
+        });
+
+        var carousel2 = new Carousel($demo2.children("ul.container"), {
+            direction:"vertical",
+            scale: [.9],
+            transition: "300ms",
+            switchBtn: $demo2.children("i.btn-direct"),
+            offsetDistance:40,
+            isClickCard: true,
+            isAuto: true,
+            interval: 3000
+        });
+
+        var carousel3 = new Carousel($demo3.children("ul.container"), {
+            transition: ".4s",
+            switchBtn: $demo3.children("i.btn-direct"),
+            offsetDistance: $demo3.find("ul.container>li").eq(0).outerWidth() + 20,
+            isAuto: true,
+        });
+
+        var carousel4 = new Carousel($demo4.children("ul.container"), {
+            scale: [.9, .8],
+            transformOrigin: "center bottom",
+            transition: "300ms",
+            switchBtn: $demo4.children("i.btn-direct"),
+            offsetDistance: 220,
+            isClickCard: true,
+            isAuto: true
+        });
+        console.timeEnd("t");
+
+    })
+
+
+
+</script>
+</html>

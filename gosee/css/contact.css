@@ -1,0 +1,50 @@
+section > h2 {
+    min-width: 1280px;
+    height: auto;
+    padding-top: 50px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    color: rgb(56, 60, 72);
+    font-size: 32px;
+}
+section {
+    width: 100%;
+    min-width: 1280px;
+    padding-bottom: 20px;
+}
+.mapViewContains {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575213561563&di=478f1d8689be4e32d93c11dbdba98401&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01671d579259320000018c1b7df963.jpg%402o.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.mapView {
+    background: rgba(0, 0, 0, 0.36);
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 5rem;
+    box-sizing: border-box;
+}
+.mapView > p {
+    color: #f1f1f1;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.myLocation > p {
+    color: #bdbdbd;
+    margin-bottom: 10px;
+}
+.tel > p, .myLocation > p {
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    margin-bottom:20px;
+    color: #777f80;
+}

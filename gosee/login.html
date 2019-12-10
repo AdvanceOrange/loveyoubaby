@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta name="卓美，广告产品" charset="UTF-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/卓美广告.ico">
+    <title>首页_卓美广告</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/index.css");
+        @import url("css/foot.css");
+    </style>
+    <style>
+        .search-contains {
+            width: 450px;
+            margin:10px auto 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="app" style="height: 100%">
+
+    <header class="header" style="height: 100%;">
+
+        <div>
+            <h2 style="padding-top: 190px;font-weight: bold;text-align: center;color: #00BCD4;font-size: 32px;">{{lang.login.logo}}</h2>
+            <hr>
+            <h1 class="typed-quotes" style=" height:67px; font-weight: 200; text-align: center; letter-spacing: 3px; font-size: 3rem;"></h1>
+            <div class="search-contains" style="width: 350px">
+                <div style=" height: 40px; display: flex; border: 1px solid rgba(255,255,255,0.75);">
+                    <input class="search-input" style="
+                background: rgba(255, 255, 255, 0.6901960784313725);
+                padding-left: 1rem;
+                user-select: none;
+        flex: 1.5;
+        border: none;
+    " v-bind:placeholder="lang.login.username">
+                </div>
+                <div style=" height: 40px; display: flex; border: 1px solid rgba(255,255,255,0.75); margin-top: .3rem;">
+                    <input class="search-input" style="
+                background: rgba(255, 255, 255, 0.6901960784313725);
+                padding-left: 1rem;
+                user-select: none;
+        flex: 1.5;
+        border: none;
+    " v-bind:placeholder="lang.login.password">
+                </div>
+                <div style="margin-top: .3rem;">
+                    <span style=" flex: 0.6 1 0%; line-height: 40px; text-align: center; background: rgba(255, 88, 34, 0.75); height: 100%; display: block;" onclick="location.href='index.html'">{{lang.login.btn}}</span>
+                </div>
+            </div>
+        </div>
+
+        <ul class="banner-control">
+            <li class="banner-control-li" name="banner-control-li" data="0"></li>
+            <li class="banner-control-li" name="banner-control-li" data="1"></li>
+            <li class="banner-control-li" name="banner-control-li" data="2"></li>
+        </ul>
+    </header>
+
+</div>
+</body>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js"></script>
+<script src="js/top.js"></script>
+<script language="JavaScript" src="js/index.js"></script>
+<script src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+
+<script src="js/language.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="js/commonVue.js"></script>
+<script>
+    $(function(){
+        CommonVue.init();
+    })
+</script>
+</html>
