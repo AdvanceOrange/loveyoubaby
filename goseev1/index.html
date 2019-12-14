@@ -1,0 +1,243 @@
+<!--
+ * @author/作者 进击の橙子君
+ * @Licenses/协议 GPLv3 此代码使用GPLv3协议，未经许可禁止修改。
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="GOSEE" charset="UTF-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/gosee.ico">
+    <title>首页_GOSEE</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/index.css");
+        @import url("css/foot.css");
+        @import url("css/animate.min.css");
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="contact" style="">
+        <div class="arrow" title="返回顶部" onclick="onTop()">
+            <span>TOP</span>
+        </div>
+        <div class="phone" title="联系电话"><span class="fa fa-phone"></span></div>
+    </div>
+    <header class="header">
+        <div class="nav-bg">
+            <div class="nav nav-text-shadow" final="false">
+                <a class="logo animated fadeInLeft" href="index.html" style="color: #00BCD4 !important;">
+                    <span class="fa fa-envira" style="font-size: 1.7rem;color: #00BCD4 !important;"></span>
+                    <span style="margin-left:0.5rem;color: #00BCD4 !important;">{{lang.nav.logo}}</span>
+                </a>
+                <ul class="nav-ul animated fadeInRight faster">
+                    <li>
+                        <a name="menuTitle" class="nav-active" href="index.html">{{lang.nav.home}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" @click="showNotOpenMessage" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed">{{lang.nav.hotel}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                    </li>
+
+                    <li>
+                        <span name="menuTitle" href="contact.html" style="display: inline-block">
+                            <span class="fa fa-user-circle-o" style="color: #00BCD4;font-size: 1.7rem;vertical-align: middle;"></span>
+                        </span>
+                        <ul>
+                            <li><a href="javascript:;" @click="changeLanguage">{{lang.nav.user_menu.language}}</a></li>
+                            <li><a @click="goLogin">{{lang.nav.user_menu.logout}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="animated fadeInDown">
+            <h1 class="typed-quotes index-typed-quotes"></h1>
+            <div class="search-contains">
+                <div style=" height: 40px; display: flex; border: 1px solid rgba(255,255,255,0.75);">
+                    <input class="search-input" v-bind:placeholder="lang.search.placeholder">
+                    <span @click="goDestination" style="cursor:pointer;flex: 0.6;line-height: 40px;text-align: center;background: rgba(0, 188, 212, 0.75);height: 100%;">{{lang.search.btn}}</span>
+                </div>
+            </div>
+        </div>
+        <ul class="banner-control">
+            <li class="banner-control-li" name="banner-control-li" data="0"></li>
+            <li class="banner-control-li" name="banner-control-li" data="1"></li>
+            <li class="banner-control-li" name="banner-control-li" data="2"></li>
+        </ul>
+    </header>
+
+    <section class="video" style="position: relative">
+        <h2>{{lang.like.title}}</h2>
+        <hr>
+        <p style="text-align: center;color: #888;margin: 0 auto 2rem auto;width: 60%;">{{this.lang.like.info}}</p>
+        <div style="position: relative;height: 100%;overflow: hidden;">
+            <div @click="videoControll" class="video_contains" style="display: flex;top: 0px;position: absolute;width: 100%;height: 100%;">
+                <div style="margin: auto;">
+                    <span  v-bind:class="[videoState == 'pause' ? 'fa-play' : 'fa-pause','fa']" style="font-size: 60px;"></span>
+                    <br>
+                    <h1>{{videoState == 'pause' ? lang.like.videoPlayState : lang.like.videoPauseState}}</h1>
+                    <br>
+                    <p>{{lang.like.videoText}}</p>
+                </div>
+            </div>
+            <div>
+                <video id="video" poster="images/0001.png" onplay="startPlay()" onmouseover="javascript:this.controls=true" onmouseout="javascript:this.controls=false">
+                    <source src="video/【4K大片】这，就是北欧！.mp4" type="video/mp4">
+                </video>
+                <audio id="audio" src="video/【4K大片】这，就是北欧！.m4a"></audio>
+            </div>
+        </div>
+    </section>
+    <section class="cooperation">
+        <h2>{{lang.top.title}}</h2>
+        <hr>
+        <div class="showCooperation">
+            <div class="wrapper horizontal demo3" ondragstart="return false">
+                <h3></h3>
+                <ul class="container">
+                    <li v-for="item in lang.top.data" class="cards_list" n="6"
+                        style="position: absolute; left: 50%; transition: all 0.4s ease 0s; margin-left: 180px; z-index: 4;">
+                        <div class="img">
+                            <img v-bind:src="item.imgSrc" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">{{item.title}}</h4>
+                            <p class="content">
+                                {{item.info}}
+                            </p>
+                            <p class="label">{{item.label}}</p>
+                        </div>
+                    </li>
+
+                </ul>
+                <i class="btn-direct btn-left">
+                    <span class="shift-left"></span>
+                </i>
+                <i class="btn-direct btn-right">
+                    <span class="shift-right"></span>
+                </i>
+            </div>
+        </div>
+    </section>
+    <section class="logistical">
+        <h2>{{lang.notes.title}}</h2>
+        <hr>
+        <div>
+            <ul>
+                <li v-for="item in lang.notes.data">
+                    <a>
+                        <div style="display: flex;overflow: hidden;height: 200px;background: rgb(251, 251, 251);border-radius: 0.3rem;color: #212121;">
+                            <div style="flex: 1 1 0%;"><img v-bind:src="item.imgSrc"
+                                                            style="height: 100%; width: 355px;"></div>
+                            <div style="flex: 3 1 0%; padding: 2rem;"><h1>{{item.title}}</h1>
+                                <p style="padding:.3rem 0;">{{item.info}}</p>
+                                <div><span>- {{item.time}}</span></div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li style="text-align: right;color: #00BCD4;">
+                    more <span class="fa fa-angle-right"></span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="createFactory">
+        <h2>{{lang.hotel.title}}</h2>
+        <hr>
+        <div>
+            <div class="wrapper horizontal demo1" ondragstart="return false">
+                <h3>{{lang.hotel.text}}</h3>
+                <ul class="container">
+                    <li v-for="item in lang.hotel.data" class="cards_list"
+                    style="position: absolute; left: 50%; transition: all 400ms ease 0s; margin-left: -160px; z-index: 5; opacity: 1; transform: scale(1, 1);">
+                        <div class="img">
+                            <img v-bind:src="item.imgSrc" alt="">
+                        </div>
+                        <div class="main_con">
+                            <h4 class="name">{{item.title}}</h4>
+                            <p class="content">
+                                {{item.info}}
+                            </p>
+                            <p class="label">{{item.label}}</p>
+                        </div>
+                    </li>
+                </ul>
+                <i class="btn-direct btn-left">
+                    <span class="shift-left"></span>
+                </i>
+                <i class="btn-direct btn-right">
+                    <span class="shift-right"></span>
+                </i>
+            </div>
+        </div>
+        <footer class="footerInfo">
+            <div>
+                <div>
+                    <div style="margin-top: 50px;float: left;">
+                        <ul>
+                            <li style="font-weight: bold;color: #c8cdd2">{{lang.foot.map}}</li>
+                            <li>
+                                <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                            </li>
+                            <li>
+                                <a  name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.hotel}}</a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                            </li>
+                            <li>
+                                <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                            </li>
+                        </ul>
+                        <p>Copyright © 2019 @进击的橙子君 All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+</div>
+</body>
+<script src="js/typed.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js"></script>
+<script src="js/top.js"></script>
+<script src="js/index.js"></script>
+<script src="js/language.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/commonVue.js"></script>
+
+<script>
+    function startPlay(){
+        document.getElementById("audio").play();
+    }
+
+    $(function(){
+        CommonVue.init();
+    })
+</script>
+<script src="js/carousel.js"></script>
+<script src="js/carousel-option.js"></script>
+</html>

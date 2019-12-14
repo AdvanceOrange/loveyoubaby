@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta name="GOSEE" charset="UTF-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/gosee.ico">
+    <title>登录_GOSEE</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/index.css");
+        @import url("css/foot.css");
+        @import url("css/animate.min.css");
+    </style>
+    <style>
+        .search-contains {
+            width: 450px;
+            margin:10px auto 0 auto;
+        }
+        .input-contains {
+            height: 40px;
+            display: flex;
+            border: 1px solid rgba(255, 255, 255, 0.75);
+        }
+        .login-btn {
+            cursor: pointer;
+            flex: 0.6 1 0%;
+            line-height: 40px;
+            text-align: center;
+            background: rgb(0, 188, 212);
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="app" style="height: 100%">
+    <header class="header" style="height: 100%;">
+
+        <div style="height: 100%;background: rgba(0, 0, 0, 0.23);">
+            <h2 class="fadeInDown animated" style="padding-top: 190px;font-weight: bold;text-align: center;color: #00BCD4;font-size: 32px;">{{lang.login.logo}}</h2>
+            <hr>
+            <h1 class="typed-quotes login-typed-quotes"></h1>
+            <div class="search-contains fadeInUp animated" style="width: 350px">
+                <div class="input-contains">
+                    <input class="search-input" v-model="loginPage.loginUserName" v-bind:placeholder="lang.login.username">
+                </div>
+                <div class="input-contains" style="margin-top: .3rem;">
+                    <!--不要设置type='password' 影响体验-->
+                    <input class="search-input" v-model="loginPage.loginPassWord" v-bind:placeholder="lang.login.password">
+                </div>
+                <div style="margin-top: .3rem;">
+                    <span class="login-btn" @click="goIndex">{{lang.login.btn}}</span>
+                </div>
+            </div>
+
+            <ul class="banner-control">
+                <li class="banner-control-li" name="banner-control-li" data="0"></li>
+                <li class="banner-control-li" name="banner-control-li" data="1"></li>
+                <li class="banner-control-li" name="banner-control-li" data="2"></li>
+            </ul>
+        </div>
+    </header>
+</div>
+</body>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js"></script>
+<script src="js/top.js"></script>
+<script src="js/index.js"></script>
+<script src="js/typed.js"></script>
+<script src="js/language.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/commonVue.js"></script>
+<script>
+    CommonVue.init();
+</script>
+</html>

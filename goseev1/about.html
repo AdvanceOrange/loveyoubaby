@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="GOSEE" charset="utf-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/gosee.ico">
+    <title>关于我们_GOSEE</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/foot.css");
+        @import url("css/animate.min.css");
+        @import url("css/about.css");
+    </style>
+    <style>
+        .about_head {
+            height: 400px;
+            background: url("images/背景/about_bg.jpg");
+            background-size: cover;
+        }
+
+        .about_head > div > h1, .about_head > div > h2 {
+            min-width: 1280px;
+            height: auto;
+            padding-bottom: 10px;
+            width: 100%;
+            letter-spacing: 10px;
+            text-align: center;
+        }
+
+        .about_head > div {
+            padding-top: 100px;
+        }
+
+        .about_head > div > h1 {
+            font-size: 90px;
+            color: #f2f2f2;
+        }
+
+        .about_head > div > h2 {
+            color: #f2f2f2;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .jianjie > div {
+            box-sizing: border-box;
+            padding: 50px;
+            width: 700px;
+            height: 360px;
+            margin: auto;
+            position: relative;
+            top: -70px;
+            background: white;
+            background-image: url(images/背景/jianjie_bg.png);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        .jianjie > div > div {
+            width: 70%;
+            float: right;
+        }
+
+        .jianjie > div > div > p {
+            padding-top: 40px;
+            line-height: 2;
+            text-indent: 20px;
+            text-indent: 40px;
+        }
+        .minor_ul > li {
+            padding-left: 1em;
+            text-indent: -.7em;
+            list-style: none;
+
+        }
+        .minor_ul > li::before {
+            content: "• ";
+            color: #9c9c9c;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="contact" style="">
+        <div class="arrow" title="返回顶部" onclick="onTop()">
+            <span>TOP</span>
+        </div>
+        <div class="phone" title="联系电话"><span class="fa fa-phone"></span></div>
+    </div>
+    <header class="header">
+        <div class="nav-bg">
+            <div class="nav nav-text-shadow" final="true">
+                <a class="logo animated fadeInLeft" href="index.html" style="color: #00BCD4 !important;">
+                    <span class="fa fa-envira" style="font-size: 1.7rem;color: #00BCD4 !important;"></span>
+                    <span style="margin-left:0.5rem;color: #00BCD4 !important;">{{lang.nav.logo}}</span>
+                </a>
+                <ul class="nav-ul animated fadeInRight faster">
+                    <li>
+                        <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" @click="showNotOpenMessage" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed">{{lang.nav.hotel}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" href="javascript:;" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" class="nav-active" href="about.html">{{lang.nav.about}}</a>
+                    </li>
+
+                    <li>
+                        <span name="menuTitle" href="contact.html" style="display: inline-block">
+                            <span class="fa fa-user-circle-o" style="color: #00BCD4;font-size: 1.7rem;vertical-align: middle;"></span>
+                        </span>
+                        <ul>
+                            <li><a href="javascript:;" @click="changeLanguage">{{lang.nav.user_menu.language}}</a></li>
+                            <li><a @click="goLogin">{{lang.nav.user_menu.logout}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="about_head">
+        <div class="animated fadeInDown">
+            <h1>{{lang.about.title}}</h1>
+            <hr>
+        </div>
+    </section>
+    <section class="jianjie animated fadeInUp">
+        <div>
+            <div>
+                <h1>{{lang.about.siteInfo}}</h1>
+                <p>{{lang.about.siteContent}}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="culture">
+        <div>
+            <div>
+                <span class="fa fa-map-marker"></span>
+                <h1>{{lang.about.position.title}}</h1>
+                <h6>{{lang.about.position.titleTran}}</h6>
+                <p>{{lang.about.position.content}}</p>
+            </div>
+            <div>
+                <span class="fa fa-spinner"></span>
+                <h1>{{lang.about.concept.title}}</h1>
+                <h6>{{lang.about.concept.titleTran}}</h6>
+                <p>{{lang.about.concept.content}}</p>
+            </div>
+            <div>
+                <span class="fa fa-check-circle-o"></span>
+                <h1>{{lang.about.norm.title}}</h1>
+                <h6>{{lang.about.norm.titleTran}}</h6>
+                <p>{{lang.about.norm.content}}</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footerInfo" style="background: rgb(56, 60, 72)">
+        <div>
+            <div>
+                <div style="margin-top: 50px;float: left;">
+                    <ul>
+                        <li style="font-weight: bold;color: #c8cdd2">{{lang.foot.map}}</li>
+                        <li>
+                            <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                        </li>
+                        <li>
+                            <a @click="showNotOpenMessage" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed">{{lang.nav.hotel}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                        </li>
+                    </ul>
+                    <p>Copyright © 2019 @进击的橙子君 All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js"></script>
+<script src="js/top.js"></script>
+<script src="js/typed.js"></script>
+<script src="js/language.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/commonVue.js"></script>
+<script>
+    CommonVue.init();
+</script>
+</html>

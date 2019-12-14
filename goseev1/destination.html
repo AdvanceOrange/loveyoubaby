@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="GOSEE" charset="UTF-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/gosee.ico">
+    <title>展示器材_卓美广告</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/showmaterial.css");
+        @import url("css/foot.css");
+        @import url("css/animate.min.css");
+    </style>
+</head>
+<body>
+<div id="app" style="background: #fbfbfb">
+    <div class="contact" style="">
+        <div class="arrow" title="返回顶部" onclick="onTop()">
+            <span>TOP</span>
+        </div>
+        <div class="phone" title="联系电话"><span class="fa fa-phone"></span></div>
+    </div>
+    <header class="header">
+        <div class="nav-bg">
+            <div class="nav nav-text-shadow" final="true">
+                <a class="logo animated fadeInLeft" href="index.html" style="color: #00BCD4 !important;">
+                    <span class="fa fa-envira" style="font-size: 1.7rem;color: #00BCD4 !important;"></span>
+                    <span style="margin-left:0.5rem;color: #00BCD4 !important;">{{lang.nav.logo}}</span>
+                </a>
+                <ul class="nav-ul animated fadeInRight faster">
+                    <li>
+                        <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" class="nav-active" href="destination.html">{{lang.nav.destination}}</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" @click="showNotOpenMessage" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed">{{lang.nav.hotel}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" href="javascript:;" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                    </li>
+
+                    <li>
+                            <span name="menuTitle" href="contact.html" style="display: inline-block">
+                                <span class="fa fa-user-circle-o" style="color: #00BCD4;font-size: 1.7rem;vertical-align: middle;"></span>
+                            </span>
+                        <ul>
+                            <li><a href="javascript:;" @click="changeLanguage">{{lang.nav.user_menu.language}}</a></li>
+                            <li><a @click="goLogin">{{lang.nav.user_menu.logout}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div style="padding-bottom: 50px">
+        <section class="cooperation" v-for="destination in lang.destination">
+            <a name="1"></a>
+            <h2>{{destination.title}}</h2>
+            <h6>{{destination.info}}</h6>
+            <div class="showCooperation">
+                <span class="ani_top" v-for="data in destination.data">
+                    <a v-bind:href="data.link">
+                        <span>
+                            <img v-bind:src="data.imgSrc" >
+                        </span>
+                        <span class="mainName">
+                            {{data.name}}
+                            <hr/>
+                            <span style="">{{data.tag}}</span>
+                        </span>
+                    </a>
+                </span>
+            </div>
+
+            <hr class="hr-line">
+        </section>
+
+        <div style="text-align: center;color: #777;">
+            <span >- {{lang.message.noMore}} -</span>
+        </div>
+    </div>
+    <footer class="footerInfo" style="background: rgb(56, 60, 72)">
+        <div>
+            <div>
+                <div style="margin-top: 50px;float: left;">
+                    <ul>
+                        <li style="font-weight: bold;color: #c8cdd2">{{lang.foot.map}}</li>
+                        <li>
+                            <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                        </li>
+                        <li>
+                            <a  name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.hotel}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                        </li>
+                    </ul>
+                    <p>Copyright © 2019 @进击的橙子君 All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+<script  src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js"></script>
+<script src="js/top.js"></script>
+<script src="js/productNav.js"></script>
+<script src="js/typed.js"></script>
+<script src="js/language.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/commonVue.js"></script>
+<script>
+    CommonVue.init();
+</script>
+</html>

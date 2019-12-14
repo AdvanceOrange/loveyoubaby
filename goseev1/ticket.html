@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="GOSEE" charset="UTF-8">
+    <link rel="icon" type="image/ico" sizes="32x32" href="images/gosee.ico">
+    <title>机票_GOSEE</title>
+    <style type="text/css">
+        @import url("css/nav.css");
+        @import url("css/font-awesome.min.css");
+        @import url("css/showmaterial.css");
+        @import url("css/foot.css");
+        @import url("css/animate.min.css");
+    </style>
+    <style>
+        .userInput {
+            background: rgba(255, 255, 255, 0.69);
+            padding-left: .5rem;
+            user-select: none;
+            flex: 1.5 1 0%;
+            border: 1px solid #00BCD4;
+            width: 300px;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .showCooperation > div > div > h3 {
+            position: relative;
+            padding-left: .4rem;
+            margin-top: 1rem;
+        }
+        .showCooperation > div > div > h3:before {
+            content: '';
+            display: block;
+            width: 3px;
+            left: 0rem;
+            height: 10px;
+            background: #00BCD4;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .plane-ticket-contains {
+            width: 819px;
+            max-width: 750px;
+            margin:1rem auto;
+            border-radius: 31px;
+            padding: 1.2rem 2rem;
+            box-sizing: border-box;
+            display: flex;
+            background: rgb(245, 245, 245);
+        }
+        .search-btn {
+            cursor: pointer;
+            margin: 1rem 2.2rem 0 0;
+            display: inline-block;
+            background: #00BCD4;
+            color: white;
+            padding: .4rem 1.4rem;
+            border-radius: .3rem;
+            font-size: 1.2rem;
+        }
+        .dash-line {
+            display: block !important;;
+            height: 1px !important;;
+            padding: 0 !important;;
+            border: 0 !important;;
+            border-top: 1px dashed #e8e8e8 !important;
+            margin: 35px auto 5px auto !important;;
+            width: 80% !important;;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div class="contact" style="">
+        <div class="arrow" title="返回顶部" onclick="onTop()">
+            <span>TOP</span>
+        </div>
+        <div class="phone" title="联系电话"><span class="fa fa-phone"></span></div>
+    </div>
+    <header class="header">
+        <div class="nav-bg">
+            <div class="nav nav-text-shadow" final="true">
+                <a class="logo animated fadeInLeft" href="index.html" style="color: #00BCD4 !important;">
+                    <span class="fa fa-envira" style="font-size: 1.7rem;color: #00BCD4 !important;"></span>
+                    <span style="margin-left:0.5rem;color: #00BCD4 !important;">{{lang.nav.logo}}</span>
+                </a>
+                <ul class="nav-ul animated fadeInRight faster">
+                    <li>
+                        <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" @click="showNotOpenMessage" name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed">{{lang.nav.hotel}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" class="nav-active" href="ticket.html">{{lang.nav.ticket}}</a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" href="javascript:;" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                    </li>
+                    <li>
+                        <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                    </li>
+
+                    <li>
+                        <span name="menuTitle" href="contact.html" style="display: inline-block">
+                            <span class="fa fa-user-circle-o" style="color: #00BCD4;font-size: 1.7rem;vertical-align: middle;"></span>
+                        </span>
+                        <ul>
+                            <li><a href="javascript:;" @click="changeLanguage">{{lang.nav.user_menu.language}}</a></li>
+                            <li><a @click="goLogin">{{lang.nav.user_menu.logout}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <section class="cooperation animated fadeInDown">
+        <a name="1"></a>
+        <h2 class="">{{lang.ticket.userInfo}}</h2>
+        <hr>
+        <h6>{{lang.ticket.info}}</h6>
+        <div class="showCooperation">
+            <div style="display: flex;justify-content: center;">
+                <div style="padding: 0 4rem;">
+                    <h3>{{lang.ticket.fromAirport}}</h3>
+                    <div><input class="userInput" v-model="lang.ticket.fromAirportValue"></div>
+                    <h3>{{lang.ticket.fromTime}}</h3>
+                    <div><input class="userInput" id="demo"></div>
+                    <h3>{{lang.ticket.name}}</h3>
+                    <div><input class="userInput" v-model="lang.ticket.nameValue"></div>
+                </div>
+                <div style="padding: 0 4rem;">
+                    <h3>{{lang.ticket.toAirport}}</h3>
+                    <div><input class="userInput" v-model="lang.ticket.toAirportValue"></div>
+                    <h3>{{lang.ticket.phone}}</h3>
+                    <div><input id="demo1" v-model="lang.ticket.phoneValue" class="userInput"></div>
+                    <h3>{{lang.ticket.id}}</h3>
+                    <div><input v-model="lang.ticket.idValue" class="userInput"></div>
+                </div>
+            </div>
+            <div style="width: 800px;margin: auto;text-align: right;">
+            <span @click="searchTicket" class="search-btn">{{lang.ticket.btn}}</span>
+            </div>
+            <hr class="dash-line">
+        </div>
+    </section>
+
+    <section class="cooperation" style="padding-bottom: 50px;">
+        <a name="4"></a>
+        <h2>{{lang.ticket.ticketList}}</h2>
+        <hr>
+        <h6>{{lang.ticket.help}}</h6>
+        <div class="showCooperation">
+            <div v-for="item in lang.ticket.tickets" class="plane-ticket-contains" style="">
+                <div style="flex:2;    border-right: 1px dashed #c3c3c3;display: flex">
+                    <div>
+                        <h1 style="font-size: 2.3rem;">airline</h1>
+                        <h3>{{lang.ticket.airline}}</h3>
+                        <ul style="font-size: 0.01rem;">
+                            <li>
+                                <p>
+                                    <span>flight</span> <span>1452ag</span>
+                                </p>
+                                <p>
+                                    <span>Gate</span> <span>7A</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span>from airport</span> <span>{{item.fromAirport}}</span>
+                                </p>
+                                <p>
+                                    <span>to airport</span> <span>{{item.toAirport}}</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span>from time</span> <span>{{item.fromTime}}</span>
+                                </p>
+                                <p>
+                                    <span>phone</span> <span>{{item.phone}}</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span>name</span> <span>{{item.name}}</span>
+                                </p>
+                                <p>
+                                    <span>id</span> <span>{{item.idNumber}}</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <i class="fa fa-globe" aria-hidden="true" style="font-size: 14rem;color: #34a2c7;padding: 0 2rem;"></i>
+                    </div>
+                    <div style="position: relative">
+                        <div>
+                            <h1 style="    font-size: 2rem;position: relative;left: -50px;">BOARDING</h1>
+                            <h3 style="padding-right: 50px;text-align: right;">PASS</h3>
+                        </div>
+                        <ul class="line-code" style="position: absolute;bottom: 20px;right:50px">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="flex:1">
+                    <div>
+                        <h1 style="text-align: right">BOARDING</h1>
+                        <h3 style="text-align: right;">PASS</h3>
+                    </div>
+                    <div style="position: relative">
+                        <ul style="font-size: 0.01rem;position: absolute;right: 0;">
+                            <li>
+                                <p>
+                                    <span>flight</span><span>1452ag</span>
+                                </p>
+                                <p>
+                                    <span>Gate</span><span>7A</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span>from airport</span> <span>{{item.fromAirport}}</span>
+                                </p>
+                                <p>
+                                    <span>to airport</span> <span>{{item.toAirport}}</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span>from time</span> <span>{{item.fromTime}}</span>
+                                </p>
+                                <p>
+                                    <span>phone</span> <span>{{item.phone}}</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <span>name</span> <span>{{item.name}}</span>
+                                </p>
+                                <p>
+                                    <span>id</span> <span>{{item.idNumber}}</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;color: #777;">
+            <span >- {{lang.message.noMore}} -</span>
+        </div>
+    </section>
+
+    <footer class="footerInfo" style="background: rgb(56, 60, 72)">
+        <div>
+            <div>
+                <div style="margin-top: 50px;float: left;">
+                    <ul>
+                        <li style="font-weight: bold;color: #c8cdd2">{{lang.foot.map}}</li>
+                        <li>
+                            <a name="menuTitle" href="index.html">{{lang.nav.home}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="destination.html">{{lang.nav.destination}}</a>
+                        </li>
+                        <li>
+                            <a  name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.hotel}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="ticket.html">{{lang.nav.ticket}}</a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" title="暂未开放..." style="opacity: .65;cursor: not-allowed" @click="showNotOpenMessage">{{lang.nav.notes}} </a>
+                        </li>
+                        <li>
+                            <a name="menuTitle" href="about.html">{{lang.nav.about}}</a>
+                        </li>
+                    </ul>
+                    <p>Copyright © 2019 @进击的橙子君 All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/dropMenu.js"></script>
+<script src="js/top.js"></script>
+<script src="js/laydate.js"></script>
+<script src="js/typed.js"></script>
+<script src="js/language.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/commonVue.js"></script>
+<script>
+    CommonVue.init();
+</script>
+</html>
