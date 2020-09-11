@@ -10,10 +10,10 @@
             margin: 0;
             width: 100%;
             height: 100%;
-            backdrop-filter: blur(12px);
+            /*backdrop-filter: blur(12px);*/
+            background: url(img/WechatIMG196.png);
             background-position: center center;
             background-size: cover;
-            background: url('img/WechatIMG196.jpeg');
             color: white;
             font: normal 12px 'Open Sans', sans-serif;
             margin-top: 20px;
@@ -22,7 +22,7 @@
 
         ul.countdown {
             list-style: none;
-            margin: 75px 0;
+            margin: 35px 0;
             padding: 0;
             display: block;
             text-align: center;
@@ -96,7 +96,7 @@
 </head>
 <body onclick="playMusic()">
 <audio id="bgm" src="mp3/谢春花-我一定会爱上你.mp3" autoplay loop></audio>
-<h1 align="center" style="padding-top:150px;">距燕子的生日还有</h1>
+<h1 align="center" style="padding-top:150px;">距最近的燕子生日还有</h1>
 <ul class="countdown">
     <li> <span class="days">00</span>
         <p class="days_ref">days</p>
@@ -126,7 +126,7 @@
 
     function playMusic() {
         var mp3 = document.getElementById("bgm");
-   
+
         if(mp3.pause) {
             mp3.play()
             //mp32.play()
