@@ -1,10 +1,13 @@
-<html lang="en">
+<html lang="en" id="root">
 <head>
     <meta charset="UTF-8">
-    <title>燕子的生日倒计时 🍰❤️</title>
+    <title id="title">️</title>
     <meta name="viewport" content="width=device-width,intial-scale=1,user-scalable=no">
     <style type="text/css">
         @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+        html {
+            opacity: 0;
+        }
         body {
             padding: 0;
             margin: 0;
@@ -117,12 +120,25 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.downCount.js"></script>
 <script type="text/javascript">
-    $('.countdown').downCount({
-        date: '09/27/2020 00:00:00',
-        offset: +10
-    }, function () {
-        alert('倒计时结束!');
-    });
+
+
+    window.onload=function(){
+        $('.countdown').downCount({
+            date: '09/27/2020 00:00:00',
+            offset: +10
+        }, function () {
+            alert('倒计时结束!');
+        });
+
+        var input = prompt("验证身份,请输入生日(格式年月日如:20201001)",undefined);
+        if(input == '19910927') {
+            document.getElementById("title").innerHTML = '燕子的生日倒计时 🍰❤'
+            document.getElementById("root").style.opacity = '1'
+        } else {
+            alert("身份验证不通过")
+        }
+    }
+
 
     function playMusic() {
         var mp3 = document.getElementById("bgm");
