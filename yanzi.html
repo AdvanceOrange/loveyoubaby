@@ -14,7 +14,7 @@
             width: 100%;
             height: 100%;
             /*backdrop-filter: blur(12px);*/
-            background: url(img/WechatIMG196.png);
+
             background-position: center center;
             background-size: cover;
             color: #03A9F4;
@@ -98,7 +98,7 @@
     </style>
 </head>
 <body onclick="playMusic()">
-<audio id="bgm" src="mp3/谢春花-我一定会爱上你.mp3" autoplay loop></audio>
+<audio id="bgm" src="" autoplay loop></audio>
 <h1 align="center" style="padding-top:150px;">离燕子最近的生日还有</h1>
 <ul class="countdown">
     <li> <span class="days">00</span>
@@ -132,8 +132,11 @@
 
         var input = prompt("验证身份,请输入生日(格式年月日如:20201001)",undefined);
         if(input == '19910927') {
+            document.getElementById("bgm").setAttribute("src","mp3/谢春花-我一定会爱上你.mp3")
+            document.body.style.backgroundImage = "url(img/WechatIMG196.png)"
             document.getElementById("title").innerHTML = '燕子的生日倒计时 🍰❤'
             document.getElementById("root").style.opacity = '1'
+
         } else {
             alert("身份验证不通过")
         }
